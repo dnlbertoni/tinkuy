@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title><?= $titulo?></title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/bootgrid/jquery.bootgrid.css">
+        <link rel="stylesheet" href="/bootstrap/font-awesome/css/all.css">
+
+        <script src="/jquery/jquery.js" ></script>
+        <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/jquery/bootgrid/jquery.bootgrid.js" ></script>
+        <script src="/jquery/bootgrid/jquery.bootgrid.fa.js" ></script>
+
+        <style>
+            body {
+                margin: 50px 0 0 0;
+                padding: 0;
+                width: 100%;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                text-align: center;
+                color: #aaa;
+                font-size: 18px;
+            }
+
+            h1 {
+                color: #719e40;
+                letter-spacing: -3px;
+                font-family: 'Lato', sans-serif;
+                font-size: 100px;
+                font-weight: 200;
+                margin-bottom: 0;
+            }
+        </style>
+
+    </head>
+    <body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2">&nbsp;</div>
+            <div class="col-8 align-content-lg-center">
+                <h1 class="-align-center"><?= $titulo?></h1>
+                <table id="grid-data-api" class="table table-condensed table-hover table-striped" >
+                    <thead>
+                    <tr>
+                        <th data-column-id="id" data-type="numeric" data-identifier="true">ID</th>
+                        <?php if(isset($th)):?>
+                            <?php foreach ($th as $t):?>
+                                <?php if($t != 'id' && $t != 'link' ):?>
+                                    <th data-column-id="<?=$t?>"><?=$t?></th>
+                                <?php endif;?>
+                            <?php endforeach;?>
+                        <?php else:?>
+                            <th data-column-id="name">Nombre</th>
+                        <?php endif;?>
+                        <th data-column-id="link"  data-formatter="link" data-order="desc">Link</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="col-2">&nbsp;
+                <?php if(isset($linkAdd)):?>
+                    <a href="<?php echo $linkAdd?>"><button class="btn btn-outline-success btn-lg" > <i class="fa fa-plus-circle"></i> Agregar</button></a>
+                <?php endif;?>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#grid-data-api").bootgrid({
+            ajaxSettings: {
+                method: "GET",
+                cache: false
+            },
+            ajax: true,
+            url: "<?= $urlData?>",
+            selection: true,
+            multiSelect: true,
+            rowSelect: true,
+            keepSelection: true,
+            formatters: {
+                "link": function(column, row)
+                {
+                    return "<a href='" + row.link + "'><i class='fa fa-edit'></i></a>";
+                }
+            },
+            labels: {
+                all: "Todos",
+                infos: " {{ctx.start}} a {{ctx.end}} de {{ctx.total}} registros",
+                loading: "Cargando...",
+                noResults: "No hay resultados!",
+                refresh: "Actualizar",
+                search: "Buscar"
+            }
+        });
+    </script>
+    </body>
+</html>

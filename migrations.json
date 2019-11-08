@@ -1,0 +1,11 @@
+{
+  "name": "Tinkuy",
+  "migrations_namespace": "App\\Migrations",
+  "table_name": "tinkuy_migration_versions",
+  "column_name": "version",
+  "column_length": 14,
+  "executed_at_column_name": "executed_at",
+  "migrations_directory": "/app/lib/Migrations",
+  "all_or_nothing": false,
+  "check_database_platform": true
+}
