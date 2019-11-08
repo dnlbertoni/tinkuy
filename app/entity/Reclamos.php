@@ -47,6 +47,11 @@ class Reclamos
     private $tipoprod;
 
     /**
+     * @ORM\Column(name="idproducto", type="integer")
+     */
+    private $idproducto;
+
+    /**
      * @ORM\Column(name="lote", type="string", length=255)
      */
     private $lote;
@@ -77,7 +82,7 @@ class Reclamos
     private $comentario;
 
     /**
-     * @ORM\Column(name="fechaini", type="datetime")
+     * @ORM\Column(name="fechafin", type="datetime")
      */
     private $fechafin;
 

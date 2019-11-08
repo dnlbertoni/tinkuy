@@ -1,15 +1,17 @@
 <?php
 
+//use Doctrine\Common\Annotations\AnnotationReader;
+//use Doctrine\Common\Cache\FilesystemCache;
+use Doctrine\ORM\EntityManager;
+//use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
+use Doctrine\ORM\Tools\Setup;
+
 require 'vendor/autoload.php';
 
 $app = new \Slim\App();
 
-//Doctrine
-use Doctrine\ORM\Tools\Setup;
-use Doctrine\ORM\EntityManager;
-
 $paths = array(
-    __DIR__ . "/app/entity"
+    __DIR__ . "/../entity"
 );
 
 $isDevMode = false;

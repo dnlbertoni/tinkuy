@@ -8,7 +8,7 @@ use App\Lib\ResponseBootgrid;
 
 class Reclamo_model{
     private $db;
-    private $table = 'procesos';
+    private $table = 'reclamos';
     private $response;
     private $bootgrid;
 
