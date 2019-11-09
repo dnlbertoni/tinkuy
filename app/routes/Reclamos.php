@@ -4,6 +4,17 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 
 $container = $app->getContainer();
+// Register component on container
+$container['view'] = function ($container) {
+    $view = new \Slim\Views\Twig(__DIR__ . '/../../templates/');
+
+    // Instantiate and add Slim specific extension
+    $router = $container->get('router');
+    $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
+    $view->addExtension(new \Slim\Views\TwigExtension($router, $uri));
+
+    return $view;
+};
 
 $app->get('/reclamos', function (Request $request, Response $response, array $args)   {
     $procesos=new \Entidad\Reclamo_model();
@@ -32,15 +43,14 @@ $app->post('/reclamos', function (Request $request, Response $response) {
     return $response->withJson($proceso->InsertOrUpdate($request->getParsedBody()));
 });
 
-$app->get('/reclamos', function (Request $request, Response $response) use($container) {
-    $macroprocesos= new \Entidad\Macroproceso_model();
-    $selMacro= $macroprocesos->GetAll();
-    $responsables= new \Entidad\Responsable_model();
-    $selResp= $responsables->GetAll();
-    $args = array('macroprocesos'=>$selMacro->result, 'responsables'=>$selResp->result);
-    return $container->get('renderer')->render($response, 'addreclamo.phtml', $args);
+$app->get('/reclamo', function (Request $request, Response $response) use($container) {
+    $fechoy=new DateTime();
+    $args['fechoy'] = $fechoy->getTimestamp();
+    $args['tipoprod'] = array(array('id'=>1, 'nombre'=>'Arroz'),array('id'=>2, 'nombre'=>'Snacks'));
+    $args['productos'] = array(array('id'=>1, 'nombre'=>'largo fino'), array('id'=>2, 'nombre'=>'Doble Carolina'));
+    return $this->view->render($response, 'addreclamo.phtml', $args);
 });
-$app->get('/reclamos/{id}', function (Request $request, Response $response,$args) use($container) {
+$app->get('/reclamo/{id}', function (Request $request, Response $response,$args) use($container) {
     $procesos=new \Entidad\Reclamo_model();
     return $response->withJson($procesos->Get($args['id'])->result);
 });

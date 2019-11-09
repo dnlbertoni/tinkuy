@@ -14,7 +14,7 @@ return [
         // Monolog settings
         'logger' => [
             'name' => 'proc',
-            'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/proc.log',
+            'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/tinkuy.log',
             'level' => \Monolog\Logger::DEBUG,
         ],
         'doctrine' => [

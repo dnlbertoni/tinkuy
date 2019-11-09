@@ -5,55 +5,161 @@
         <title>Slim 3</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/jquery/bootgrid/jquery.bootgrid.css">
+        <link rel="stylesheet" href="/bootgrid/jquery.bootgrid.css">
         <link rel="stylesheet" href="/bootstrap/font-awesome/css/all.css">
 
         <script src="/jquery/jquery.js" ></script>
         <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="/jquery/bootgrid/jquery.bootgrid.js" ></script>
-        <script src="/jquery/bootgrid/jquery.bootgrid.fa.js" ></script>
-        <style>
-            body {
-                margin: 50px 0 0 0;
-                padding: 0;
-                width: 100%;
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-                text-align: center;
-                color: #aaa;
-                font-size: 18px;
-            }
-
-            h1 {
-                color: #719e40;
-                letter-spacing: -3px;
-                font-family: 'Lato', sans-serif;
-                font-size: 100px;
-                font-weight: 200;
-                margin-bottom: 0;
-            }
-        </style>
+        <script src="/bootgrid/jquery.bootgrid.js" ></script>
+        <script src="/bootgrid/jquery.bootgrid.fa.js" ></script>
     </head>
     <body>
-        <h1>Agregar Proceso</h1>
-        <form action="/proceso" method="POST" enctype="multipart/form-data">
-                <label>Nombre</label>
-                <input type="text" value="" name="name"/>
-                <br/>
-                <label>Macro proceso</label>
-                <select name="idmacroproceso">
-                    <?php foreach ($macroprocesos as $i):?>
-                        <option value="<?= $i->id?>"><?=$i->name?></option>
-                    <?php endforeach;?>
-                </select>
-                <br/>
-                <label>Responsable</label>
-            <select name="idresponsable">
-                <?php foreach ($responsables as $i):?>
-                    <option value="<?= $i->id?>"><?=$i->name?></option>
-                <?php endforeach;?>
-            </select>
-                <br/>
-                <input type="submit" class="btn btn-outline-success" name="Enviar" value="Grabar"/>
-        </form>
+        <div class="container-fluid align-content-center">
+            <h1>Reclamos DH</h1>
+            <h6>Estimado consumidor, complete este formulario y a la brevedad nos comunicaremos con usted.</h6>
+            <div class="form-row align-content-lg-center">
+                <div class="col-lg-3 col-md-4"></div>
+                <div class="col-lg-6 col-md-4" >
+                <form action="/reclamo" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="apelnom">Nombre y Apellido</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-user-circle"></i>
+                                </div>
+                            </div>
+                            <input id="apelnom" name="apelnom" placeholder="Apellido y Nombre" type="text" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="correoelectronico">Correo Electronico</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-at"></i>
+                                </div>
+                            </div>
+                            <input id="correoelectronico" name="correoelectronico" placeholder="Correo Electronico" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Telefono</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                            </div>
+                            <input id="telefono" name="telefono" placeholder="Telefono" type="text" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipoprod">Tipo Producto</label>
+                        <div>
+                            <select id="tipoprod" name="tipoprod" aria-describedby="tipoprodHelpBlock" required="required" class="custom-select">
+                                {% for item in tipoprod %}
+                                    <option value="{{ item.id }}">{{ item.nombre}}</option>
+                                {% endfor %}
+                            </select>
+                            <span id="tipoprodHelpBlock" class="form-text text-muted">Tipo de Producto</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="idproducto">Producto</label>
+                        <div>
+                            <select id="idproducto" name="idproducto" required="required" class="custom-select">
+                                {% for item in productos %}
+                                    <option value="{{ item.id }}">{{ item.nombre}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lote">Lote</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-barcode"></i>
+                                </div>
+                            </div>
+                            <input id="lote" name="lote" placeholder="Numero de Lote" type="text" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechavto">Fecha de vencimiento</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
+                            <input id="fechavto" name="fechavto" placeholder="Fecha de Vencimiento" type="text" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo Reclamo</label>
+                        <div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input name="tiporelamo" id="tiporelamo_0" type="radio" required="required" class="custom-control-input" value="1">
+                                <label for="tiporelamo_0" class="custom-control-label">Gorgojos</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input name="tiporelamo" id="tiporelamo_1" type="radio" required="required" class="custom-control-input" value="2">
+                                <label for="tiporelamo_1" class="custom-control-label">Mariposas</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input name="tiporelamo" id="tiporelamo_2" type="radio" required="required" class="custom-control-input" value="3">
+                                <label for="tiporelamo_2" class="custom-control-label">Gusanos</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="provincia">Provincia</label>
+                        <div>
+                            <select id="provincia" name="provincia" required="required" class="custom-select">
+                                <option value="Entre rios">Entre rios</option>
+                                <option value="Buenos Aires">Buenos Aires</option>
+                                <option value="fish">Fish</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="idlugarcompra">Lugar de Compra</label>
+                        <div>
+                            <select id="idlugarcompra" name="idlugarcompra" required="required" class="custom-select">
+                                <option value="1">Carrefour</option>
+                                <option value="2">Wallmart</option>
+                                <option value="3">La Anonima</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="comentario">Comentario</label>
+                        <textarea id="comentario" name="comentario" cols="40" rows="5" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button name="submit" type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+                </div>
+                <div class="col-lg-3 col-md-4"></div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $("#tipoprod").change(function(){
+                    var tipoprod = $(this).val();
+                    $.get('productos/ByTipo/'+tipoprod, function(data){
+                        //esta el la peticion get, la cual se divide en tres partes. ruta,variables y funcion
+                        console.log(data);
+                        var producto_select = '<option value="">Seleccione Porducto</option>'
+                        for (var i=0; i<data.length;i++)
+                            producto_select+='<option value="'+data[i].id+'">'+data[i].nombre+'</option>';
+                        $("#tipoprod").html(producto_select);
+                    });
+                });
+            });
+        </script>
     </body>
 </html>

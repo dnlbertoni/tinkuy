@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  */
 
-class Tipopreclamos
+class Tiporeclamos
 {
     /**
      * @ORM\Column(name="id", type="integer")
