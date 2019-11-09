@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title><?= $titulo?></title>
+        <title>{{ titulo }}</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="/bootgrid/jquery.bootgrid.css">
@@ -10,8 +10,8 @@
 
         <script src="/jquery/jquery.js" ></script>
         <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="/jquery/bootgrid/jquery.bootgrid.js" ></script>
-        <script src="/jquery/bootgrid/jquery.bootgrid.fa.js" ></script>
+        <script src="/bootgrid/jquery.bootgrid.js" ></script>
+        <script src="/bootgrid/jquery.bootgrid.fa.js" ></script>
 
         <style>
             body {
@@ -40,7 +40,7 @@
         <div class="row">
             <div class="col-2">&nbsp;</div>
             <div class="col-8 align-content-lg-center">
-                <h1 class="-align-center"><?= $titulo?></h1>
+                <h1 class="-align-center">{{ titulo }}</h1>
                 <table id="grid-data-api" class="table table-condensed table-hover table-striped" >
                     <thead>
                     <tr>
@@ -60,9 +60,9 @@
                 </table>
             </div>
             <div class="col-2">&nbsp;
-                <?php if(isset($linkAdd)):?>
-                    <a href="<?php echo $linkAdd?>"><button class="btn btn-outline-success btn-lg" > <i class="fa fa-plus-circle"></i> Agregar</button></a>
-                <?php endif;?>
+                {% if linkAdd %}
+                    <a href=" {{ linkAdd }}"><button class="btn btn-outline-success btn-lg" > <i class="fa fa-plus-circle"></i> Agregar</button></a>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -73,7 +73,7 @@
                 cache: false
             },
             ajax: true,
-            url: "<?= $urlData?>",
+            url: "{{ urlData }}",
             selection: true,
             multiSelect: true,
             rowSelect: true,
@@ -83,14 +83,6 @@
                 {
                     return "<a href='" + row.link + "'><i class='fa fa-edit'></i></a>";
                 }
-            },
-            labels: {
-                all: "Todos",
-                infos: " {{ctx.start}} a {{ctx.end}} de {{ctx.total}} registros",
-                loading: "Cargando...",
-                noResults: "No hay resultados!",
-                refresh: "Actualizar",
-                search: "Buscar"
             }
         });
     </script>

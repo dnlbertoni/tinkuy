@@ -16,40 +16,42 @@ $container['view'] = function ($container) {
     return $view;
 };
 
-$app->get('/reclamos', function (Request $request, Response $response, array $args)   {
-    $procesos=new \Entidad\Reclamo_model();
-    return $response->withJson($procesos->GetAll('"/reclamos/"')->result);
-});
-$app->get('/reclamos/html', function (Request $request, Response $response) use($container) {
-    $dat = new \Entidad\Reclamo_model();
-    $datos = json_encode($dat->GetAll('"/proceso/"')->result);
-    $th= (array)$dat->GetAll('"/reclamos/"')->result[0];
-    $th = array_keys($th);
-    $args = array(  'datos'=>$datos,
-                    'urlData'=>'/reclamos/bootgrid',
-                    'titulo'=>'Reclamos',
-                    'th'=> $th,
-                    'linkAdd'=>'/proceso');
-    return $container->get('renderer')->render($response, 'grilla.phtml', $args);
+$app->get('/reclamos[/{formato}]', function (Request $request, Response $response, $params) use($container) {
+    $reclamos = new \Entidad\Reclamo_model();
+    $formato = (isset($params['formato']))?$params['formato']:null;
+    switch ($formato){
+        case 'html':
+            $datos = json_encode($reclamos->GetAll('"/reclamo/"')->result);
+            $th= (array)$reclamos->GetAll('"/reclamo/"')->result[0];
+            $th = array_keys($th);
+            $args = array(  'datos'=>$datos,
+                'urlData'=>'/reclamos/bootgrid',
+                'titulo'=>'Reclamos',
+                'th'=> $th,
+                'linkAdd'=>'/reclamo');
+            return $this->view->render($response, 'grilla.phtml', $args);
+            break;
+        case 'bootgrid':
+            return $response->withJson($reclamos->GetAllBootgrid('"/reclamos/"'));
+            break;
+        default:
+            return $response->withJson($reclamos->GetAll('"/reclamos/"')->result);
+            break;
+    }
 });
 
-$app->get('/reclamos/bootgrid', function (Request $request, Response $response) use($container) {
-    $procesos = new \Entidad\Reclamo_model();
-    return $response->withJson($procesos->GetAllBootgrid('"/reclamos/"'));
+$app->get('/reclamo', function (Request $request, Response $response) use($container) {
+    $prodcutos = new \Entidad\Producto_model();
+    $fechoy=new DateTime();
+    $args['fechoy'] = $fechoy->getTimestamp();
+    $args['tipoprod'] = array(array('id'=>1, 'nombre'=>'Arroz'),array('id'=>2, 'nombre'=>'Snacks'));
+    return $this->view->render($response, 'addreclamo.phtml', $args);
 });
-
-$app->post('/reclamos', function (Request $request, Response $response) {
+$app->post('/reclamo', function (Request $request, Response $response) {
     $proceso = new Entidad\Reclamo_model();
     return $response->withJson($proceso->InsertOrUpdate($request->getParsedBody()));
 });
 
-$app->get('/reclamo', function (Request $request, Response $response) use($container) {
-    $fechoy=new DateTime();
-    $args['fechoy'] = $fechoy->getTimestamp();
-    $args['tipoprod'] = array(array('id'=>1, 'nombre'=>'Arroz'),array('id'=>2, 'nombre'=>'Snacks'));
-    $args['productos'] = array(array('id'=>1, 'nombre'=>'largo fino'), array('id'=>2, 'nombre'=>'Doble Carolina'));
-    return $this->view->render($response, 'addreclamo.phtml', $args);
-});
 $app->get('/reclamo/{id}', function (Request $request, Response $response,$args) use($container) {
     $procesos=new \Entidad\Reclamo_model();
     return $response->withJson($procesos->Get($args['id'])->result);

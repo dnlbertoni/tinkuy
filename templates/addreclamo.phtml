@@ -155,8 +155,8 @@
                         console.log(data);
                         var producto_select = '<option value="">Seleccione Porducto</option>'
                         for (var i=0; i<data.length;i++)
-                            producto_select+='<option value="'+data[i].id+'">'+data[i].nombre+'</option>';
-                        $("#tipoprod").html(producto_select);
+                            producto_select+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
+                        $("#idproducto").html(producto_select);
                     });
                 });
             });
