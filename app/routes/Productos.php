@@ -23,7 +23,7 @@ $app->get('/productos[/{formato}]', function (Request $request, Response $respon
         switch ($formato){
             case 'html':
                 $datos = json_encode($productos->GetAll('"/producto/"')->result);
-                $th= (array)$productos->GetAll('"/producto/"')->result[0];
+                $th= (array)$productos->GetAllBootgrid('"/producto/"')->rows[0];
                 $th = array_keys($th);
                 $args = array(  'datos'=>$datos,
                     'urlData'=>'/productos/bootgrid',
@@ -50,7 +50,10 @@ $app->get('/productos/ByTipo/{tipoproducto}', function (Request $request, Respon
 
 $app->post('/producto', function (Request $request, Response $response) {
     $producto = new Entidad\Producto_model();
-    return $response->withJson($producto->InsertOrUpdate($request->getParsedBody()));
+    $respuesta['result']=$producto->InsertOrUpdate($request->getParsedBody())->result;
+    $base_url = $request->getUri()->getScheme(). '://'.$request->getUri()->getHost().'/';
+    $respuesta['urlCallBack']=$base_url.'productos/html';
+    return $response->withJson($respuesta);
 });
 
 $app->get('/producto', function (Request $request, Response $response) use($container) {

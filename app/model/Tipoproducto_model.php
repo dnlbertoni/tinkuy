@@ -6,9 +6,9 @@ use App\Lib\Database;
 use App\Lib\Response;
 use App\Lib\ResponseBootgrid;
 
-class Producto_model{
+class Tipoproducto_model{
     private $db;
-    private $table = 'productos';
+    private $table = 'tipoproductos';
     private $response;
     private $bootgrid;
 
@@ -48,10 +48,7 @@ class Producto_model{
         try {
             $result = array();
             if($url){
-                $sql = "SELECT  t.codigo, t.name as Nombre , t2.name as Tipo , concat(%s,t.id) as link 
-                          FROM %s t 
-                     inner join tipoproductos t2 on t.idtipoproducto = t2.id
-                          where t.estado=1 and t2.estado=1";
+                $sql = "SELECT t.*, concat(%s,t.id) link FROM %s t";
                 $sql = sprintf($sql, $url, $this->table);
             }else{
                 $sql = sprintf("SELECT t.* FROM $this->table t");
@@ -92,35 +89,11 @@ class Producto_model{
         }
     }
 
-    public function GetByTipo($idtipoproducto, $url=false)
-    {
-        try {
-            $result = array();
-            if($url){
-                $sql = sprintf("SELECT t.*, '%s' as  home FROM %s t WHERE idtipoproducto = %d", $url, $this->table ,$idtipoproducto);
-            }else{
-                $sql = sprintf("SELECT t.* FROM $this->table t WHERE idtipoproducto = %d", $idtipoproducto);
-            }
-            $stm = $this->db->prepare($sql);
-            $stm->execute();
-
-            $this->response->setResponse(true);
-            $this->response->result = $stm->fetchAll();
-
-            return $this->response;
-        } catch (Exception $e) {
-            $this->response->setResponse(false, $e->getMessage());
-            return $this->response;
-        }
-    }
-
     public function InsertOrUpdate($data){
         try {
             if (isset($data['id'])) {
                 $sql = "UPDATE $this->table SET 
-                            name              = ?,
-                            codigo            = ?,
-                            idtipoproducto    = ?,
+                            name              = ?, 
                             estado            = ?
                         WHERE id = ?";
 
@@ -128,22 +101,19 @@ class Producto_model{
                     ->execute(
                         array(
                             $data['name'],
-                            $data['codigo'],
-                            $data['idtipoproducto'],
                             $data['estado'],
                             $data['id']
                         )
                     );
             } else {
                 $sql = "INSERT INTO $this->table
-                            (name, codigo, idtipoproducto, estado)
-                            VALUES (?,?,?,? )";
+                            (name, estado)
+                            VALUES (?,? )";
 
                 $this->db->prepare($sql)
                     ->execute(
                         array(
                             $data['name'],
-                            $data['idtipoproducto'],
                             1
                         )
                     );

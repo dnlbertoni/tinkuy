@@ -44,16 +44,15 @@
                 <table id="grid-data-api" class="table table-condensed table-hover table-striped" >
                     <thead>
                     <tr>
-                        <th data-column-id="id" data-type="numeric" data-identifier="true">ID</th>
-                        <?php if(isset($th)):?>
-                            <?php foreach ($th as $t):?>
-                                <?php if($t != 'id' && $t != 'link' ):?>
-                                    <th data-column-id="<?=$t?>"><?=$t?></th>
-                                <?php endif;?>
-                            <?php endforeach;?>
-                        <?php else:?>
-                            <th data-column-id="name">Nombre</th>
-                        <?php endif;?>
+                        {% if th %}
+                            {% for t in th %}
+                                {% if  t != 'link' %}
+                                    <th data-column-id="{{ t }}">{{ t }}</th>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <th data-column-id="">nose</th>
+                        {% endif %}
                         <th data-column-id="link"  data-formatter="link" data-order="desc">Link</th>
                     </tr>
                     </thead>

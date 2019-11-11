@@ -7,7 +7,7 @@ namespace Entidad;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Tipoproductos
+ * Tipoproductos.php
  *
  * @ORM\Table(name="tipoproductos")
  * @ORM\Entity

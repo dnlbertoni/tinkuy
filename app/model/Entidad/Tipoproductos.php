@@ -3,7 +3,7 @@
 namespace Entidad;
 
 /**
- * Tipoproductos
+ * Tipoproductos.php
  */
 class Tipoproductos
 {

@@ -28,6 +28,10 @@ class Productos
     private $name;
 
     /**
+     * @ORM\Column(name="codigo", type="string", length=100)
+     */
+    private $codigo;
+    /**
      * @ORM\Column(name="idtipoproducto", type="integer", length=5)
      */
     private $idtipoproducto;

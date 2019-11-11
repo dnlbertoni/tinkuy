@@ -19,9 +19,9 @@
             <div class="form-row align-content-lg-center">
                 <div class="col-lg-3 col-md-4"></div>
                 <div class="col-lg-6 col-md-4" >
-                <form action="/producto" method="POST" enctype="multipart/form-data">
+                <form action="/tipoproducto" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="name">Nombre</label>
+                        <label for="apelnom">Nombre</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
@@ -29,28 +29,6 @@
                                 </div>
                             </div>
                             <input id="name" name="name" placeholder="Nombre" type="text" required="required" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="codigo">Codigo</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fa fa-barcode"></i>
-                                </div>
-                            </div>
-                            <input id="codigo" name="codigo" placeholder="Codigo" type="text" required="required" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="idtipoproducto">Tipo Producto</label>
-                        <div>
-                            <select id="idtipoproducto" name="idtipoproducto" aria-describedby="tipoprodHelpBlock" required="required" class="custom-select">
-                                {% for item in tipoprod %}
-                                    <option value="{{ item.id }}">{{ item.nombre}}</option>
-                                {% endfor %}
-                            </select>
-                            <span id="tipoprodHelpBlock" class="form-text text-muted">Tipo de Producto</span>
                         </div>
                     </div>
                     <div class="form-group">
