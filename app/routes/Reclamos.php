@@ -41,10 +41,17 @@ $app->get('/reclamos[/{formato}]', function (Request $request, Response $respons
 });
 
 $app->get('/reclamo', function (Request $request, Response $response) use($container) {
-    $prodcutos = new \Entidad\Producto_model();
+    $tiposproductos = new \Entidad\Tipoproducto_model();
+    $tiposreclamos = new \Entidad\Tiporeclamo_model();
+    $provincias = new \Entidad\Provincias_model();
+    $lugares = new \Entidad\Lugarcompra_model();
+
     $fechoy=new DateTime();
     $args['fechoy'] = $fechoy->getTimestamp();
-    $args['tipoprod'] = array(array('id'=>1, 'nombre'=>'Arroz'),array('id'=>2, 'nombre'=>'Snacks'));
+    $args['provincias']=$provincias->GetAll()->result;
+    $args['tipoprod'] = $tiposproductos->GetAll()->result;
+    $args['tiporecl'] = $tiposreclamos->GetAll()->result;
+    $args['lugares'] = $lugares->GetAll()->result;
     return $this->view->render($response, 'addreclamo.phtml', $args);
 });
 $app->post('/reclamo', function (Request $request, Response $response) {

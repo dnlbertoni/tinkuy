@@ -58,8 +58,9 @@
                         <label for="tipoprod">Tipo Producto</label>
                         <div>
                             <select id="tipoprod" name="tipoprod" aria-describedby="tipoprodHelpBlock" required="required" class="custom-select">
+                                <option value="" selected="selected">Seleccion Tipo de Producto</option>
                                 {% for item in tipoprod %}
-                                    <option value="{{ item.id }}">{{ item.nombre}}</option>
+                                    <option value="{{ item.id }}">{{ item.name}}</option>
                                 {% endfor %}
                             </select>
                             <span id="tipoprodHelpBlock" class="form-text text-muted">Tipo de Producto</span>
@@ -100,27 +101,25 @@
                     <div class="form-group">
                         <label>Tipo Reclamo</label>
                         <div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input name="tiporelamo" id="tiporelamo_0" type="radio" required="required" class="custom-control-input" value="1">
-                                <label for="tiporelamo_0" class="custom-control-label">Gorgojos</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input name="tiporelamo" id="tiporelamo_1" type="radio" required="required" class="custom-control-input" value="2">
-                                <label for="tiporelamo_1" class="custom-control-label">Mariposas</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input name="tiporelamo" id="tiporelamo_2" type="radio" required="required" class="custom-control-input" value="3">
-                                <label for="tiporelamo_2" class="custom-control-label">Gusanos</label>
-                            </div>
+                        {% if tiporecl %}
+                            {% for recl in tiporecl %}
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input name="tiporelamo" id="tiporelamo_0" type="radio" required="required" class="custom-control-input" value="{{ recl.id}}">
+                                    <label for="tiporelamo_0" class="custom-control-label">{{ recl.name }}</label>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="provincia">Provincia</label>
                         <div>
                             <select id="provincia" name="provincia" required="required" class="custom-select">
-                                <option value="Entre rios">Entre rios</option>
-                                <option value="Buenos Aires">Buenos Aires</option>
-                                <option value="fish">Fish</option>
+                                {% if provincias %}
+                                    {% for p in provincias%}
+                                        <option value="{{ p.iso_nombre }}">{{ p.nombre }}</option>
+                                    {% endfor%}
+                                {% endif %}
                             </select>
                         </div>
                     </div>
@@ -128,9 +127,11 @@
                         <label for="idlugarcompra">Lugar de Compra</label>
                         <div>
                             <select id="idlugarcompra" name="idlugarcompra" required="required" class="custom-select">
-                                <option value="1">Carrefour</option>
-                                <option value="2">Wallmart</option>
-                                <option value="3">La Anonima</option>
+                                {% if lugares %}
+                                    {% for l in lugares%}
+                                        <option value="{{ l.id }}">{{ l.name }}</option>
+                                    {% endfor%}
+                                {% endif %}
                             </select>
                         </div>
                     </div>
@@ -158,6 +159,33 @@
                             producto_select+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
                         $("#idproducto").html(producto_select);
                     });
+                });
+                $('form').submit(function(event) {
+
+                    // get the form data
+                    // there are many ways to get this data using jQuery (you can use the class or id also)
+                    var formData = $(this).serialize();
+
+                    // process the form
+                    $.ajax({
+                        type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+                        url         : $(this).attr('action'), // the url where we want to POST
+                        data        : formData, // our data object
+                        dataType    : 'json', // what type of data do we expect back from the server
+                        encode          : true
+                    })
+                    // using the done promise callback
+                        .done(function(data) {
+
+                            // log data to the console so we can see
+                            console.log(data);
+                            if(!(data.urlCallBack===undefined)){
+                                location.href = data.urlCallBack;
+                            }
+                        });
+
+                    // stop the form from submitting the normal way and refreshing the page
+                    event.preventDefault();
                 });
             });
         </script>
