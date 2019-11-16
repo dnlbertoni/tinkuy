@@ -77,22 +77,22 @@ class Reclamos
     private $idlugarcompra;
 
     /**
-     * @ORM\Column(name="comentario", type="text", length=4000)
+     * @ORM\Column(name="comentario", type="text", length=4000, nullable=true)
      */
     private $comentario;
 
     /**
-     * @ORM\Column(name="fechafin", type="datetime")
+     * @ORM\Column(name="fechafin", type="datetime", nullable=true)
      */
     private $fechafin;
 
     /**
-     * @ORM\Column(name="idusuario", type="integer")
+     * @ORM\Column(name="idusuario", type="integer", nullable=true)
      */
     private $idusuario;
 
     /**
-     * @ORM\Column(name="estado", type="integer", length=5)
+     * @ORM\Column(name="estado", type="integer", length=5 )
      */
     private $estado;
 

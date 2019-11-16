@@ -57,8 +57,9 @@ $app->post('/producto', function (Request $request, Response $response) {
 });
 
 $app->get('/producto', function (Request $request, Response $response) use($container) {
+    $tipoproductos = new \Entidad\Tipoproducto_model();
     $args['titulo'] = 'Producto';
-    $args['tipoprod'] = array(array('id'=>1, 'nombre'=>'Arroz'),array('id'=>2, 'nombre'=>'Snacks'));
+    $args['tipoprod'] = $tipoproductos->GetAll()->result;
     return $this->view->render($response, 'addproducto.phtml', $args);
 });
 $app->get('/producto/{id}', function (Request $request, Response $response,$args) use($container) {

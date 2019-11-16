@@ -45,14 +45,48 @@ $app->get('/reclamo', function (Request $request, Response $response) use($conta
     $tiposreclamos = new \Entidad\Tiporeclamo_model();
     $provincias = new \Entidad\Provincias_model();
     $lugares = new \Entidad\Lugarcompra_model();
+    $productos = new \Entidad\Producto_model();
 
     $fechoy=new DateTime();
     $args['fechoy'] = $fechoy->getTimestamp();
-    $args['provincias']=$provincias->GetAll()->result;
-    $args['tipoprod'] = $tiposproductos->GetAll()->result;
-    $args['tiporecl'] = $tiposreclamos->GetAll()->result;
-    $args['lugares'] = $lugares->GetAll()->result;
-    return $this->view->render($response, 'addreclamo.phtml', $args);
+    $error=null;
+    if(count($provincias->GetAll()->result)>0){
+        $args['provincias']=$provincias->GetAll()->result;
+        $error .= '0';
+    }else{
+        $error .= '1';
+    };
+    if(count($tiposproductos->GetForForm()->result)>0){
+        $args['tipoprod'] = $tiposproductos->GetForForm()->result;
+        $error .= '0';
+    }else{
+        $error .= '1';
+    };
+    if(count($productos->GetAll()->result)>0){
+        $error .= '0';
+    }else{
+        $error .= '1';
+    };
+    if(count($tiposreclamos->GetAll()->result) > 0){
+        $args['tiporecl'] = $tiposreclamos->GetAll()->result;
+        $error .= '0';
+    }else{
+        $error .= '1';
+    };
+    if(count($lugares->GetAll()->result) > 0){
+        $args['lugares'] = $lugares->GetAll()->result;
+        $error .= '0';
+    }else{
+        $error .= '1';
+    };
+    $args['error']=$error;
+    $args['errorcode']=bindec($error);
+
+    if(bindec($error)==0){
+        return $this->view->render($response, 'addreclamo.phtml', $args);
+    }else{
+        return $this->view->render($response, 'error.phtml', $args);
+    }
 });
 $app->post('/reclamo', function (Request $request, Response $response) {
     $proceso = new Entidad\Reclamo_model();

@@ -85,39 +85,88 @@ class Reclamo_model{
     }
 
     public function InsertOrUpdate($data){
+        $fechoy = new \DateTime();
         try {
             if (isset($data['id'])) {
                 $sql = "UPDATE $this->table SET 
-                            name              = ?, 
-                            idmacroproceso    = ?,
-                            codigo            = ?,
-                            idresponsable     = ?,
-                            estado            = ?
+                            fechaini           = ?,
+                            apelnom            = ?, 
+                            correoelectronico  = ?,
+                            telefono           = ?,
+                            tipoprod           = ?,
+                            idproducto         = ?,
+                            lote               = ?, 
+                            fechavto           = ?,
+                            tiporeclamo        = ?,
+                            provincia          = ?,
+                            idlugarcompra      = ?,
+                            comentario         = ?,
+                            fechafin           = ?,
+                            idusuario          = ?,
+                            estado             = ?
                         WHERE id = ?";
 
                 $this->db->prepare($sql)
                     ->execute(
                         array(
-                            $data['name'],
-                            $data['idmacroproceso'],
-                            $data['codigo'],
-                            $data['idresponsable'],
+                            $data['fechaini'],
+                            $data['apelnom'],
+                            $data['correoelectronico'],
+                            $data['telefono'],
+                            $data['tipoprod'],
+                            $data['idproducto'],
+                            $data['lote'],
+                            $data['fechavto'],
+                            $data['tiporeclamo'],
+                            $data['provincia'],
+                            $data['idlugarcompra'],
+                            $data['comentario'],
+                            $data['fechafin'],
+                            $data['idusuario'],
                             $data['estado'],
                             $data['id']
                         )
                     );
             } else {
-                $sql = "INSERT INTO $this->table
-                            (name, idmacroproceso,codigo, idresponsable, estado)
-                            VALUES (?,?,?, ?, ?)";
-
+                $sql = "INSERT INTO $this->table (
+                            fechaini           ,
+                            apelnom            , 
+                            correoelectronico  ,
+                            telefono           ,
+                            tipoprod           ,
+                            idproducto         ,
+                            lote               , 
+                            fechavto           ,
+                            tiporeclamo        ,
+                            provincia          ,
+                            idlugarcompra      ,
+                            comentario         ,
+                            fechafin           ,
+                            idusuario          ,
+                            estado             
+                                )
+                            VALUES (
+                                    ?,?,?, ?, ?,
+                                    ?,?,?, ?, ?,
+                                    ?,?,?, ?, ?
+                            )";
                 $this->db->prepare($sql)
                     ->execute(
                         array(
-                            $data['name'],
-                            $data['idmacroproceso'],
-                            $data['codigo'],
-                            $data['idresponsable'],
+                            $fechoy->format('Y-m-d H:i:s'),
+                            $data['apelnom'],
+                            $data['correoelectronico'],
+                            $data['telefono'],
+                            $data['tipoprod'],
+                            $data['idproducto'],
+                            $data['lote'],
+                            $data['fechavto'],
+                            $data['tiporeclamo'],
+                            $data['provincia'],
+                            $data['idlugarcompra'],
+                            $data['comentario'],
+                            $data['fechafin'],
+                            $data['usuario'],
                             1
                         )
                     );

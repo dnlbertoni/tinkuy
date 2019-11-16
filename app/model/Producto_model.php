@@ -143,6 +143,7 @@ class Producto_model{
                     ->execute(
                         array(
                             $data['name'],
+                            $data['codigo'],
                             $data['idtipoproducto'],
                             1
                         )

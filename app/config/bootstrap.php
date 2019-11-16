@@ -8,6 +8,9 @@ use Doctrine\ORM\Tools\Setup;
 
 require 'vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::create(__DIR__.'/../../public/');
+$dotenv->load();
+
 $app = new \Slim\App();
 
 $paths = array(
@@ -18,10 +21,10 @@ $isDevMode = false;
 // the connection configuration
 $dbParams = array(
     'driver' => 'pdo_mysql',
-    'host' => '127.0.0.1',
-    'user' => 'danielbertoni',
-    'password' => 'CE535server',
-    'dbname' => 'reclamos',
+    'host' => getenv(DB_HOST),
+    'user' => getenv(DB_USER),
+    'password' => getenv(DB_PASS),
+    'dbname' => getenv(DB_NAME),
 );
 
 $configDoctrine = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode, null, null, false);

@@ -28,7 +28,7 @@ class Estados
     private $name;
 
     /**
-     * @ORM\Column(name="password", type="string")
+     * @ORM\Column(name="tabla", type="string")
      */
     private $tabla;
 

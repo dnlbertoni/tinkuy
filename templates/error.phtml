@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="wrap-grid100 p-l-20 p-r-20 p-t-77 p-b-30">
+        <div class="row">
+            <div class="col-12 align-content-lg-center">
+                <h1>Ups, nos encontramos con un inconveniente</h1>
+                <div class="alert alert-danger">
+                    <span>{{ error }} - </span>
+                    <span>{{ errorcode }} - </span>
+                    <span>{{ erromessage }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

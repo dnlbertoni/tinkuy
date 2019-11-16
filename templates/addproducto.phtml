@@ -1,20 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>{{ titulo }}</title>
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/bootgrid/jquery.bootgrid.css">
-        <link rel="stylesheet" href="/bootstrap/font-awesome/css/all.css">
+{% extends "layout.html" %}
 
-        <script src="/jquery/jquery.js" ></script>
-        <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="/bootgrid/jquery.bootgrid.js" ></script>
-        <script src="/bootgrid/jquery.bootgrid.fa.js" ></script>
-    </head>
-    <body>
-        <div class="container-fluid align-content-center">
+{% block content %}
+<div class="wrap-grid100 p-l-100 p-r-1000 p-t-77 p-b-30">
             <h1>{{ titulo }}</h1>
             <div class="form-row align-content-lg-center">
                 <div class="col-lg-3 col-md-4"></div>
@@ -61,6 +48,7 @@
                 <div class="col-lg-3 col-md-4"></div>
             </div>
         </div>
+</div>
     <script>
         $(document).ready(function() {
             $('form').submit(function(event) {
@@ -93,5 +81,4 @@
 
         });
     </script>
-    </body>
-</html>
+{% endblock %}

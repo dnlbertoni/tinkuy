@@ -23,9 +23,15 @@ class Usuarios
     private $id;
 
     /**
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255)
      */
-    private $name;
+    private $email;
+
+    /**
+     * @ORM\Column(name="nombre", type="string", length=255)
+     */
+    private $nombre;
+
 
     /**
      * @ORM\Column(name="password", type="string")
@@ -36,6 +42,7 @@ class Usuarios
      * @ORM\Column(name="estado", type="integer", length=5)
      */
     private $estado;
+
 
     public function __get($property)
     {

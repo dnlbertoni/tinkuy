@@ -6,9 +6,9 @@ use App\Lib\Database;
 use App\Lib\Response;
 use App\Lib\ResponseBootgrid;
 
-class Tipoproducto_model{
+class Usuario_model{
     private $db;
-    private $table = 'tipoproductos';
+    private $table = 'usuarios';
     private $response;
     private $bootgrid;
 
@@ -93,32 +93,43 @@ class Tipoproducto_model{
         try {
             if (isset($data['id'])) {
                 $sql = "UPDATE $this->table SET 
-                            name              = ?, 
+                            email             = ?,
+                            nombre            = ?, 
+                            password          = ?,
                             estado            = ?
                         WHERE id = ?";
 
                 $this->db->prepare($sql)
                     ->execute(
                         array(
-                            $data['name'],
+                            $data['email'],
+                            $data['nombre'],
+                            $this->encodePass($data['password']),
                             $data['estado'],
                             $data['id']
                         )
                     );
             } else {
-                $sql = "INSERT INTO $this->table
-                            (name, estado)
-                            VALUES (?,? )";
+                $existeMailActivo=$this->existeMailActivo($data['email']);
+                if(!$existeMailActivo){
+                    $sql = "INSERT INTO $this->table
+                            (email, nombre,password, estado)
+                            VALUES (?,?, ?,? )";
 
-                $this->db->prepare($sql)
-                    ->execute(
-                        array(
-                            $data['name'],
-                            1
-                        )
-                    );
+                    $this->db->prepare($sql)
+                        ->execute(
+                            array(
+                                $data['email'],
+                                $data['nombre'],
+                                $this->encodePass($data['password']),
+                                1
+                            )
+                        );
+                    $this->response->setResponse(true);
+                }else{
+                    $this->response->setResponse(-1, 'Ya existe ese Correo activo');
+                };
             }
-            $this->response->setResponse(true);
             return $this->response;
         } catch (Exception $e) {
             $this->response->setResponse(false, $e->getMessage());
@@ -140,4 +151,25 @@ class Tipoproducto_model{
         }
     }
 
+    private function existeMailActivo($email){
+        try {
+            $result = array();
+            $sql = sprintf("SELECT count(1) cantidad FROM $this->table t WHERE  email = '%s' and estado=1", $email);
+            $stm = $this->db->prepare($sql);
+            $stm->execute();
+
+            $result = $stm->fetch();
+            if($result->cantidad = 0){
+                return false;
+            }else{
+                return true;
+            }
+        } catch (Exception $e) {
+            return true;
+        }
+    }
+
+    private function encodePass($pass){
+        return password_hash($pass, PASSWORD_DEFAULT);
+    }
 }

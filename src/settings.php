@@ -30,11 +30,11 @@ return [
 
             'connection' => [
                 'driver' => 'pdo_mysql',
-                'host' => 'localhost',
+                'host' => getenv(DB_HOST),
                 'port' => 3306,
-                'dbname' => 'reclamos',
-                'user' => 'danielbertoni',
-                'password' => 'CE535server',
+                'dbname' => getenv(DB_NAME) ,
+                'user' => getenv(DB_USER),
+                'password' => getenv(DB_PASS),
                 'charset' => 'utf-8'
             ]
         ]

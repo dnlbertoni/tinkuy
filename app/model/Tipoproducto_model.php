@@ -43,6 +43,28 @@ class Tipoproducto_model{
         };
     }
 
+    public function GetForForm()
+    {
+        try {
+            $result = array();
+            $sql = sprintf("SELECT t.* 
+                                    FROM $this->table t
+                                    inner join productos p on p.idtipoproducto=t.id");
+
+            $stm = $this->db->prepare($sql);
+            $stm->execute();
+
+            $this->response->setResponse(true);
+            $this->response->result = $stm->fetchAll();
+
+            return $this->response;
+
+        } catch (Exception $e) {
+            $this->response->setResponse(false, $e->getMessage());
+            return $this->response;
+        };
+    }
+
     public function GetAllBootgrid($url=false)
     {
         try {
