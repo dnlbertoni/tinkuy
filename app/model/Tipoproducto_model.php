@@ -70,10 +70,10 @@ class Tipoproducto_model{
         try {
             $result = array();
             if($url){
-                $sql = "SELECT t.*, concat(%s,t.id) link FROM %s t";
+                $sql = "SELECT t.id id, t.name Nombre, e.name Estado, concat(%s,t.id) link FROM %s t inner join estados e on e.id=t.estado";
                 $sql = sprintf($sql, $url, $this->table);
             }else{
-                $sql = sprintf("SELECT t.* FROM $this->table t");
+                $sql = sprintf("SELECT t.id id, t.name Nombre, e.name Estado FROM $this->table t inner join estados e on e.id=t.estado");
             }
 
             $stm = $this->db->prepare($sql);
@@ -128,17 +128,23 @@ class Tipoproducto_model{
                         )
                     );
             } else {
-                $sql = "INSERT INTO $this->table
-                            (name, estado)
-                            VALUES (?,? )";
+                $estado= new Estados_model();
+                $idestado = $estado->defineEstado($this->table, 'creacion');
+                if ($idestado) {
+                    $sql = "INSERT INTO $this->table
+                                (name, estado)
+                                VALUES (?,? )";
 
-                $this->db->prepare($sql)
-                    ->execute(
-                        array(
-                            $data['name'],
-                            1
-                        )
-                    );
+                    $this->db->prepare($sql)
+                        ->execute(
+                            array(
+                                $data['name'],
+                                $idestado
+                            )
+                        );
+                }else{
+                    $this->response->setResponse('-1','No se pudo Determinar el Estado');
+                }
             }
             $this->response->setResponse(true);
             return $this->response;

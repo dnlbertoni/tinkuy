@@ -48,7 +48,12 @@ class Estados_model{
         try {
             $result = array();
             if($url){
-                $sql = "SELECT t.id, t.name as Nombre, t.tabla, concat(%s,t.id) link FROM %s t";
+                $sql = "SELECT t.id, t.name Nombre, me.name tabla, e.name Evento, case when (t.aplica = 1 ) then 'Si' else 'No' end   Aplica , concat(%s,t.id) link 
+                          FROM %s t
+                        inner join maquinaestados me on me.id = t.idmaquinaestado
+                        inner join eventos e         on e.id  = t.idevento
+                        order by 3,4,2
+                          ";
                 $sql = sprintf($sql, $url, $this->table);
             }else{
                 $sql = sprintf("SELECT t.* FROM $this->table t");
@@ -94,32 +99,42 @@ class Estados_model{
             if (isset($data['id'])) {
                 $sql = "UPDATE $this->table SET 
                             name              = ?, 
-                            tabla            = ?
+                            idmaquinaestado   = ?,
+                            idevento          = ?,
+                            aplica            = ?
                         WHERE id = ?";
 
                 $this->db->prepare($sql)
                     ->execute(
                         array(
                             $data['name'],
-                            $data['tabla'],
+                            $data['idmaquinaestado'],
+                            $data['idevento'],
+                            $data['aplica'],
                             $data['id']
                         )
                     );
             } else {
-                $sql = "INSERT INTO $this->table
-                            (name, tabla)
-                            VALUES (?,? )";
+                if (!$this->existeRelacion($data['idmaquinaestado'], $data['idevento'])) {
+                    $sql = "INSERT INTO $this->table
+                            (name, idmaquinaestado, idevento, aplica)
+                            VALUES (?,?,?,? )";
 
-                $this->db->prepare($sql)
-                    ->execute(
-                        array(
-                            $data['name'],
-                            $data['tabla']
-                        )
-                    );
+                    $this->db->prepare($sql)
+                        ->execute(
+                            array(
+                                $data['name'],
+                                $data['idmaquinaestado'],
+                                $data['idevento'],
+                                $data['aplica']
+                            )
+                        );
+                    $this->response->setResponse(true);
+                } else {
+                    $this->response->setResponse('11', 'Ya existe esa Relacion');
+                };
+                return $this->response;
             }
-            $this->response->setResponse(true);
-            return $this->response;
         } catch (Exception $e) {
             $this->response->setResponse(false, $e->getMessage());
         }
@@ -137,6 +152,66 @@ class Estados_model{
             return $this->response;
         } catch (Exception $e) {
             $this->response->setResponse(false, $e->getMessage());
+        }
+    }
+
+    private function existeRelacion($idmaquinaestado,$idevento){
+        try {
+            $result = array();
+            $sql = sprintf("SELECT count(*) cantidad from estados WHERE idmaquinaestado = %s and idevento=%s", $idmaquinaestado, $idevento);
+            $stm = $this->db->prepare($sql);
+            $stm->execute();
+
+            $this->response->setResponse(true);
+            $this->response->result = $stm->fetch();
+            $result=$this->response->result->cantidad;
+            if($result>0){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (Exception $e) {
+            $this->response->setResponse(false, $e->getMessage());
+            return true;
+        }
+    }
+
+    public function SinRelacion($url){
+        try {
+            $result = array();
+            $sql = sprintf("SELECT me.name Tabla, ev.name Evento, concat(%s,me.id,'/',ev.id) link
+                                    from maquinaestados me,  eventos ev
+                                    where concat(me.id,ev.id) not in (select concat(idmaquinaestado,idevento) from estados)
+                            ", $url);
+            $stm = $this->db->prepare($sql);
+            $stm->execute();
+
+            $this->bootgrid->setResponse($stm->fetchAll(), $stm->rowCount());
+
+            return $this->bootgrid;
+
+        } catch (Exception $e) {
+            $this->bootgrid->setResponse(false, $e->getMessage());
+            return $this->bootgrid;
+        };
+    }
+
+    public function defineEstado(string $maquina, string $evento ){
+        try {
+            $result = array();
+            $sql = "        SELECT t.id FROM estados t
+          inner join maquinaestados m on t.idmaquinaestado = m.id
+          inner join eventos e on t.idevento=e.id
+               where m.name = '%s' and e.name='%s'";
+            $sql = sprintf($sql, $maquina, $evento);
+            $stm = $this->db->prepare($sql);
+            $stm->execute();
+            $result = $stm->fetch();
+
+            return $result->id;
+        } catch (Exception $e) {
+            $this->response->setResponse(false, $e->getMessage());
+            return false;
         }
     }
 

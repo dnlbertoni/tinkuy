@@ -46,7 +46,8 @@ $app->get('/lugarcompras[/{formato}]', function (Request $request, Response $res
 
 $app->post('/lugarcompra', function (Request $request, Response $response) {
     $producto=new \Entidad\Lugarcompra_model();
-    $respuesta['result']=$producto->InsertOrUpdate($request->getParsedBody())->result;
+    $creacion = $producto->InsertOrUpdate($request->getParsedBody());
+    $respuesta['result']=$creacion->result;
     $base_url = $request->getUri()->getScheme(). '://'.$request->getUri()->getHost().'/';
     $respuesta['urlCallBack']=$base_url.'lugarcompras/html';
     return $response->withJson($respuesta);

@@ -2,54 +2,106 @@
 
 {% block content %}
 <div class="wrap-grid100 p-l-20 p-r-20 p-t-77 p-b-30">
-        <div class="row">
-            <div class="col-12 align-content-lg-center">
-                <div class="text-center">
-                    <span class="h3">{{ titulo }}</span>
-                    <span>
+    <div class="row">
+        <div class="col-12 align-content-lg-center">
+            <div class="text-center">
+                <span class="h3">{{ titulo }}</span>
+                <span>
                     {% if linkAdd %}
                         <a href=" {{ linkAdd }}"><button class="btn btn-outline-success btn-lg " > <i class="fa fa-plus-circle"></i> Nuevo</button></a>
                     {% endif %}
                     </span>
+            </div>
+            <table id="grid-data-api" class="table table-condensed table-hover table-striped" >
+                <thead>
+                <tr>
+                    {% if th %}
+                    {% for t in th %}
+                    {% if  t != 'link' %}
+                    <th data-column-id="{{ t }}">{{ t }}</th>
+                    {% endif %}
+                    {% endfor %}
+                    {% else %}
+                    <th data-column-id="">nose</th>
+                    {% endif %}
+                    <th data-column-id="link"  data-formatter="link" data-order="desc">Link</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+<script>
+    $("#grid-data-api").bootgrid({
+        ajaxSettings: {
+            method: "GET",
+            cache: false
+        },
+        ajax: true,
+        url: "{{ urlData }}",
+        selection: true,
+        multiSelect: true,
+        rowSelect: true,
+        keepSelection: true,
+        formatters: {
+            "link": function(column, row)
+            {
+                return "<a href='" + row.link + "'><i class='fa fa-edit'></i></a>";
+            }
+        }
+    });
+</script>
+{% if urlData2 %}
+        <div class="row">
+            <div class="col-12 align-content-lg-center">
+                <div class="text-center">
+                    <span class="h3">{{ titulo2 }}</span>
+                    <span>
+                        {% if linkAdd2 %}
+                            <a href=" {{ linkAdd2 }}"><button class="btn btn-outline-success btn-lg " > <i class="fa fa-plus-circle"></i> Nuevo</button></a>
+                        {% endif %}
+                        </span>
                 </div>
-                <table id="grid-data-api" class="table table-condensed table-hover table-striped" >
+                <table id="grid-data-api2" class="table table-condensed table-hover table-striped" >
                     <thead>
                     <tr>
-                        {% if th %}
-                            {% for t in th %}
-                                {% if  t != 'link' %}
-                                    <th data-column-id="{{ t }}">{{ t }}</th>
-                                {% endif %}
-                            {% endfor %}
-                        {% else %}
-                            <th data-column-id="">nose</th>
+                        {% if th2 %}
+                        {% for t in th2 %}
+                        {% if  t != 'link' %}
+                        <th data-column-id="{{ t }}">{{ t }}</th>
                         {% endif %}
-                        <th data-column-id="link"  data-formatter="link" data-order="desc">Link</th>
+                        {% endfor %}
+                        {% else %}
+                        <th data-column-id="">nose</th>
+                        {% endif %}
+                        <th data-column-id="link"  data-formatter="link2" data-order="desc">Link</th>
                     </tr>
                     </thead>
                 </table>
             </div>
         </div>
     </div>
-</div>
+
     <script>
-        $("#grid-data-api").bootgrid({
+        $("#grid-data-api2").bootgrid({
             ajaxSettings: {
                 method: "GET",
                 cache: false
             },
             ajax: true,
-            url: "{{ urlData }}",
+            url: "{{ urlData2 }}",
             selection: true,
             multiSelect: true,
             rowSelect: true,
             keepSelection: true,
             formatters: {
-                "link": function(column, row)
+                "link2": function(column, row)
                 {
                     return "<a href='" + row.link + "'><i class='fa fa-edit'></i></a>";
                 }
             }
         });
     </script>
+{% endif %}
+</div>
 {% endblock %}

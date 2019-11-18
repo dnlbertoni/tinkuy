@@ -23,14 +23,24 @@ class Estados
     private $id;
 
     /**
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
-     * @ORM\Column(name="tabla", type="string")
+     * @ORM\Column(name="idmaquinaestado", type="integer")
      */
-    private $tabla;
+    private $idmauinaestado;
+
+    /**
+     * @ORM\Column(name="idevento", type="integer")
+     */
+    private $idevento;
+
+    /**
+     * @ORM\Column(name="aplica", type="integer")
+     */
+    private $aplica;
 
 
     public function __get($property)

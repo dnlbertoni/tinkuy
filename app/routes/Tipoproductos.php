@@ -23,7 +23,7 @@ $app->get('/tipoproductos[/{formato}]', function (Request $request, Response $re
         switch ($formato){
             case 'html':
                 $datos = json_encode($productos->GetAll('"/tipoproducto/"')->result);
-                $th= (array)$productos->GetAll('"/tipoproducto/"')->result[0];
+                $th= (array)$productos->GetAllBootgrid('"/tipoproducto/"')->rows[0];
                 $th = array_keys($th);
                 $args = array(  'datos'=>$datos,
                     'urlData'=>'/tipoproductos/bootgrid',

@@ -34,7 +34,7 @@
                         <div>
                             <select id="idtipoproducto" name="idtipoproducto" aria-describedby="tipoprodHelpBlock" required="required" class="custom-select">
                                 {% for item in tipoprod %}
-                                    <option value="{{ item.id }}">{{ item.nombre}}</option>
+                                    <option value="{{ item.id }}">{{ item.name}}</option>
                                 {% endfor %}
                             </select>
                             <span id="tipoprodHelpBlock" class="form-text text-muted">Tipo de Producto</span>

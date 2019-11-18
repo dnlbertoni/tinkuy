@@ -90,7 +90,11 @@ $app->get('/reclamo', function (Request $request, Response $response) use($conta
 });
 $app->post('/reclamo', function (Request $request, Response $response) {
     $proceso = new Entidad\Reclamo_model();
-    return $response->withJson($proceso->InsertOrUpdate($request->getParsedBody()));
+    $datos = $request->getParsedBody();
+    $formato = 'd/m/Y';
+    $fecha = DateTime::createFromFormat($formato, $datos['fechavto']);
+    $datos['fechavto']=$fecha->format('Y-m-d');
+    return $response->withJson($proceso->InsertOrUpdate($datos));
 });
 
 $app->get('/reclamo/{id}', function (Request $request, Response $response,$args) use($container) {

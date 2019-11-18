@@ -48,11 +48,12 @@ class Producto_model{
         try {
             $result = array();
             if($url){
-                $sql = "SELECT  t.codigo, t.name as Nombre , t2.name as Tipo , concat(%s,t.id) as link 
-                          FROM %s t 
+                $sql = "SELECT  t.codigo, t.name as Nombre ,e.name Estado, t2.name as Tipo , e2.name \"Estado Tipo\", concat(%s,t.id) as link 
+                          FROM  productos t 
                      inner join tipoproductos t2 on t.idtipoproducto = t2.id
-                          where t.estado=1 and t2.estado=1";
-                $sql = sprintf($sql, $url, $this->table);
+                     inner join estados e on t.estado=e.id
+                     inner join estados e2 on t2.estado=e2.id ";
+                $sql = sprintf($sql, $url);
             }else{
                 $sql = sprintf("SELECT t.* FROM $this->table t");
             }
@@ -135,19 +136,25 @@ class Producto_model{
                         )
                     );
             } else {
-                $sql = "INSERT INTO $this->table
-                            (name, codigo, idtipoproducto, estado)
-                            VALUES (?,?,?,? )";
+                $estado= new Estados_model();
+                $idestado = $estado->defineEstado($this->table, 'creacion');
+                if ($idestado) {
+                    $sql = "INSERT INTO $this->table
+                                (name, codigo, idtipoproducto, estado)
+                                VALUES (?,?,?,? )";
 
-                $this->db->prepare($sql)
-                    ->execute(
-                        array(
-                            $data['name'],
-                            $data['codigo'],
-                            $data['idtipoproducto'],
-                            1
-                        )
-                    );
+                    $this->db->prepare($sql)
+                        ->execute(
+                            array(
+                                $data['name'],
+                                $data['codigo'],
+                                $data['idtipoproducto'],
+                                $idestado
+                            )
+                        );
+                }else{
+                    $this->response->setResponse('-1','No se pudo Determinar el Estado');
+                }
             }
             $this->response->setResponse(true);
             return $this->response;
