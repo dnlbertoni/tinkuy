@@ -16,15 +16,17 @@
                 <thead>
                 <tr>
                     {% if th %}
-                    {% for t in th %}
-                    {% if  t != 'link' %}
-                    <th data-column-id="{{ t }}">{{ t }}</th>
-                    {% endif %}
-                    {% endfor %}
+                        {% for t in th %}
+                            {% if  t != 'link' %}
+                                <th data-column-id="{{ t }}" data-formatter="{{ t }}" class="w-auto">{{ t }}</th>
+                            {% else %}
+                                <th data-column-id="link"  data-formatter="link" data-order="desc" class="w-auto">Link</th>
+                            {% endif %}
+                        {% endfor %}
                     {% else %}
-                    <th data-column-id="">nose</th>
+                    <th data-column-id="">n/a</th>
+                    <th data-column-id="link"  data-formatter="link" data-order="desc" class="w-auto">Link</th>
                     {% endif %}
-                    <th data-column-id="link"  data-formatter="link" data-order="desc">Link</th>
                 </tr>
                 </thead>
             </table>
@@ -32,6 +34,7 @@
     </div>
 
 <script>
+    $(".help").tooltip();
     $("#grid-data-api").bootgrid({
         ajaxSettings: {
             method: "GET",
@@ -47,8 +50,17 @@
             "link": function(column, row)
             {
                 return "<a href='" + row.link + "'><i class='fa fa-edit'></i></a>";
+            },
+            "activar": function(column, row)
+            {
+                return "<a href='" + row.activar + "'><i class='fa fa-recycle'></i></a>";
+            },
+            "acciones": function(column, row)
+            {
+                return row.acciones;
             }
         }
+
     });
 </script>
 {% if urlData2 %}
@@ -66,15 +78,17 @@
                     <thead>
                     <tr>
                         {% if th2 %}
-                        {% for t in th2 %}
-                        {% if  t != 'link' %}
-                        <th data-column-id="{{ t }}">{{ t }}</th>
-                        {% endif %}
-                        {% endfor %}
+                            {% for t in th2 %}
+                                {% if  t != 'link' %}
+                                    <th data-column-id="{{ t }}" data-formatter="{{ t }}" class="w-auto">{{ t }}</th>
+                                {% else %}
+                                    <th data-column-id="link"  data-formatter="link2" data-order="desc" class="w-auto">Link</th>
+                                {% endif %}
+                            {% endfor %}
                         {% else %}
-                        <th data-column-id="">nose</th>
+                            <th data-column-id="">n/a</th>
+                            <th data-column-id="link"  data-formatter="link2" data-order="desc" class="w-auto">Link</th>
                         {% endif %}
-                        <th data-column-id="link"  data-formatter="link2" data-order="desc">Link</th>
                     </tr>
                     </thead>
                 </table>

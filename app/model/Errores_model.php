@@ -5,11 +5,10 @@ namespace Entidad;
 use App\Lib\Database;
 use App\Lib\Response;
 
-class Provincias_model{
+class Errores_model{
     private $db;
-    private $table = 'provincias';
+    private $table = 'errores';
     private $response;
-    private $bootgrid;
 
     public function __construct()
     {

@@ -1,29 +1,18 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>Slim 3</title>
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/bootgrid/jquery.bootgrid.css">
-        <link rel="stylesheet" href="/bootstrap/font-awesome/css/all.css">
-        <link rel="stylesheet" href="/css/bootstrap-datepicker3.standalone.min.css">
+{% extends embebed ? "embebed.html" : "layout.html" %}
 
-        <script src="/jquery/jquery.js" ></script>
-        <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="/bootgrid/jquery.bootgrid.js" ></script>
-        <script src="/bootgrid/jquery.bootgrid.fa.js" ></script>
-        <script src="/js/bootstrap-datepicker.min.js"></script>
-        <script src="/locales/bootstrap-datepicker.es.min.js"></script>
-    </head>
-    <body>
-        <div class="container-fluid align-content-center">
+{% block content %}
+        <div class="wrap-grid100 p-l-20 p-r-20 p-t-77 p-b-30">
+            <div class="text-center">
             <h1>Reclamos DH</h1>
             <h6>Estimado consumidor, complete este formulario y a la brevedad nos comunicaremos con usted.</h6>
+            </div>
+            <br/>
+            <hr/>
+            <br>
             <div class="form-row align-content-lg-center">
                 <div class="col-lg-3 col-md-4"></div>
                 <div class="col-lg-6 col-md-4" >
-                <form action="/reclamo" method="POST" enctype="multipart/form-data">
+                <form action="{{ accion }}" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="apelnom">Nombre y Apellido</label>
                         <div class="input-group">
@@ -32,7 +21,7 @@
                                     <i class="fa fa-user-circle"></i>
                                 </div>
                             </div>
-                            <input id="apelnom" name="apelnom" placeholder="Apellido y Nombre" type="text" required="required" class="form-control">
+                            <input id="apelnom" name="apelnom" placeholder="Apellido y Nombre" type="text" required="required" class="form-control" value="{{dato.apelnom}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -43,7 +32,7 @@
                                     <i class="fa fa-at"></i>
                                 </div>
                             </div>
-                            <input id="correoelectronico" name="correoelectronico" placeholder="Correo Electronico" type="text" class="form-control">
+                            <input id="correoelectronico" name="correoelectronico" placeholder="Correo Electronico" type="text" class="form-control" value="{{dato.correoelectronico}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -54,7 +43,7 @@
                                     <i class="fa fa-phone"></i>
                                 </div>
                             </div>
-                            <input id="telefono" name="telefono" placeholder="Telefono" type="text" required="required" class="form-control">
+                            <input id="telefono" name="telefono" placeholder="Telefono" type="text" required="required" class="form-control" value="{{dato.telefono}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -63,7 +52,11 @@
                             <select id="tipoprod" name="tipoprod" aria-describedby="tipoprodHelpBlock" required="required" class="custom-select">
                                 <option value="" selected="selected">Seleccion Tipo de Producto</option>
                                 {% for item in tipoprod %}
-                                    <option value="{{ item.id }}">{{ item.name}}</option>
+                                    {% set selected = '' %} }
+                                    {% if item.id == dato.tipoprod %}
+                                        {% set selected = 'selected' %} }
+                                    {% endif %}
+                                    <option value="{{ item.id }}"  {{ selected }} >{{ item.name}}</option>
                                 {% endfor %}
                             </select>
                             <span id="tipoprodHelpBlock" class="form-text text-muted">Tipo de Producto</span>
@@ -73,8 +66,13 @@
                         <label for="idproducto">Producto</label>
                         <div>
                             <select id="idproducto" name="idproducto" required="required" class="custom-select">
+                                <option value="" selected="selected">Seleccion de Producto</option>
                                 {% for item in productos %}
-                                    <option value="{{ item.id }}">{{ item.nombre}}</option>
+                                    {% set selected = '' %} }
+                                    {% if item.id == dato.idproducto %}
+                                        {% set selected = 'selected' %} }
+                                    {% endif %}
+                                    <option value="{{ item.id }}" {{ selected }} >{{ item.name}}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -87,7 +85,7 @@
                                     <i class="fa fa-barcode"></i>
                                 </div>
                             </div>
-                            <input id="lote" name="lote" placeholder="Numero de Lote" type="text" required="required" class="form-control">
+                            <input id="lote" name="lote" placeholder="Numero de Lote" type="text" required="required" class="form-control" value="{{dato.lote}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -98,7 +96,7 @@
                                     <i class="fa fa-calendar"></i>
                                 </div>
                             </div>
-                            <input id="fechavto" name="fechavto" placeholder="Fecha de Vencimiento" type="text" required="required" class="form-control datepicker">
+                            <input id="fechavto" name="fechavto" placeholder="Fecha de Vencimiento" type="text" required="required" class="form-control datepicker" value="{{dato.fechavto}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -107,7 +105,11 @@
                             <select id="tiporeclamo" name="tiporeclamo" required="required" class="custom-select">
                                 {% if tiporecl %}
                                     {% for recl in tiporecl %}
-                                        <option value="{{ recl.id }}">{{ recl.name }}</option>
+                                        {% set selected = '' %} }
+                                        {% if recl.id == dato.idreclamo %}
+                                            {% set selected = 'selected' %} }
+                                        {% endif %}
+                                        <option value="{{ recl.id }}" {{ selected }}>{{ recl.name }}</option>
                                     {% endfor%}
                                 {% endif %}
                             </select>
@@ -119,7 +121,11 @@
                             <select id="provincia" name="provincia" required="required" class="custom-select">
                                 {% if provincias %}
                                     {% for p in provincias%}
-                                        <option value="{{ p.iso_nombre }}">{{ p.nombre }}</option>
+                                        {% set selected = '' %} }
+                                        {% if p.iso_nombre == dato.provincia %}
+                                            {% set selected = 'selected' %} }
+                                        {% endif %}
+                                        <option value="{{ p.iso_nombre }}" {{ selected }}>{{ p.nombre }}</option>
                                     {% endfor%}
                                 {% endif %}
                             </select>
@@ -131,7 +137,11 @@
                             <select id="idlugarcompra" name="idlugarcompra" required="required" class="custom-select">
                                 {% if lugares %}
                                     {% for l in lugares%}
-                                        <option value="{{ l.id }}">{{ l.name }}</option>
+                                        {% set selected = '' %} }
+                                        {% if l.id == dato.idlugarcompra %}
+                                            {% set selected = 'selected' %} }
+                                        {% endif %}
+                                        <option value="{{ l.id }}" {{ selected }}>{{ l.name }}</option>
                                     {% endfor%}
                                 {% endif %}
                             </select>
@@ -141,7 +151,22 @@
                         <label for="comentario">Comentario</label>
                         <textarea id="comentario" name="comentario" cols="40" rows="5" class="form-control"></textarea>
                     </div>
+                    {% if origenes %}
                     <div class="form-group">
+                        <select id="idorigen" name="idorigen" required="required" class="custom-select">
+                            {% for item in origenes%}
+                                {% set selected = '' %} }
+                                {% if item.id == dato.idorigen %}
+                                    {% set selected = 'selected' %} }
+                                {% endif %}
+                                <option value="{{ item.id }}" {{ selected }}>{{ item.name }}</option>
+                            {% endfor%}
+                        </select>
+                    </div>
+                {% else %}
+                    <input type="hidden" value="{{ origen }}" name="origen" id="origen"/>
+                {%endif%}
+                <div class="form-group text-center">
                         <button name="submit" type="submit" class="btn btn-primary">Enviar</button>
                     </div>
                 </form>
@@ -153,7 +178,7 @@
             $(document).ready(function() {
                 $("#tipoprod").change(function () {
                     var tipoprod = $(this).val();
-                    $.get('productos/ByTipo/' + tipoprod, function (data) {
+                    $.get('/productos/ByTipo/' + tipoprod, function (data) {
                         //esta el la peticion get, la cual se divide en tres partes. ruta,variables y funcion
                         console.log(data);
                         var producto_select = '<option value="">Seleccione Porducto</option>'
@@ -194,5 +219,5 @@
                 });
             });
         </script>
-    </body>
-</html>
+    </div>
+   {% endblock %}

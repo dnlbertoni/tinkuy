@@ -58,9 +58,25 @@ $app->post('/producto', function (Request $request, Response $response) {
 
 $app->get('/producto', function (Request $request, Response $response) use($container) {
     $tipoproductos = new \Entidad\Tipoproducto_model();
-    $args['titulo'] = 'Producto';
-    $args['tipoprod'] = $tipoproductos->GetAll()->result;
-    return $this->view->render($response, 'addproducto.phtml', $args);
+    $estados = new \Entidad\Estados_model();
+    $base_url = $request->getUri()->getScheme(). '://'.$request->getUri()->getHost().'/';
+    $idestado = $estados->defineEstado('productos', 'creacion');
+    if($idestado>0){
+        if(count($tipoproductos->GetAll()->result)>0){
+            $error=0;
+        }else{
+            $error = 2;
+        }
+    }else{
+        $error = 6;
+    }
+    if($error ==0){
+        $args['titulo'] = 'Producto';
+        $args['tipoprod'] = $tipoproductos->GetAll()->result;
+        return $this->view->render($response, 'producto/add.phtml', $args);
+    }else{
+        return $response->withStatus(302)->withHeader('Location', '/error/'.$error);
+    }
 });
 $app->get('/producto/{id}', function (Request $request, Response $response,$args) use($container) {
     $producto=new \Entidad\Producto_model();

@@ -82,6 +82,26 @@ class Reclamos
     private $comentario;
 
     /**
+     * @ORM\Column(name="idorigen", type="integer")
+     */
+    private $idorigen;
+
+    /**
+     * @ORM\Column(name="dictamen", type="integer", nullable=true)
+     */
+    private $dictamen;
+
+    /**
+     * @ORM\Column(name="nrotack", type="string", length=255, , nullable=true)
+     */
+    private $nrotrack;
+
+    /**
+     * @ORM\Column(name="updated", type="datetime", nullable=true)
+     */
+    private $updated;
+
+    /**
      * @ORM\Column(name="fechafin", type="datetime", nullable=true)
      */
     private $fechafin;

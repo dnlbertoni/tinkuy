@@ -22,70 +22,79 @@ $app->get('/reclamos[/{formato}]', function (Request $request, Response $respons
     switch ($formato){
         case 'html':
             $datos = json_encode($reclamos->GetAll('"/reclamo/"')->result);
-            $th= (array)$reclamos->GetAll('"/reclamo/"')->result[0];
+            $th= (array)$reclamos->GetAllBootgrid('"/reclamo/"')->rows[0];
             $th = array_keys($th);
             $args = array(  'datos'=>$datos,
                 'urlData'=>'/reclamos/bootgrid',
                 'titulo'=>'Reclamos',
                 'th'=> $th,
-                'linkAdd'=>'/reclamo');
+                'linkAdd'=>'/reclamo/html/aWQ6MQ==');
             return $this->view->render($response, 'grilla.phtml', $args);
             break;
         case 'bootgrid':
-            return $response->withJson($reclamos->GetAllBootgrid('"/reclamos/"'));
+            return $response->withJson($reclamos->GetAllBootgrid('/reclamo/'));
             break;
         default:
-            return $response->withJson($reclamos->GetAll('"/reclamos/"')->result);
+            return $response->withJson($reclamos->GetAll('"/reclamo/"')->result);
             break;
     }
 });
 
-$app->get('/reclamo', function (Request $request, Response $response) use($container) {
+$app->get('/reclamo/html/{origen}', function (Request $request, Response $response, $param) use($container) {
     $tiposproductos = new \Entidad\Tipoproducto_model();
     $tiposreclamos = new \Entidad\Tiporeclamo_model();
     $provincias = new \Entidad\Provincias_model();
     $lugares = new \Entidad\Lugarcompra_model();
     $productos = new \Entidad\Producto_model();
+    $origen = new \Entidad\Origenes_model();
+    $estado = new \Entidad\Estados_model();
 
     $fechoy=new DateTime();
     $args['fechoy'] = $fechoy->getTimestamp();
+    /**** validaciones ***/
     $error=null;
-    if(count($provincias->GetAll()->result)>0){
+    if(count($provincias->GetAll()->result)>0){ //error 1
         $args['provincias']=$provincias->GetAll()->result;
-        $error .= '0';
+        if(count($tiposproductos->GetForForm()->result)>0){ //error 2
+            $args['tipoprod'] = $tiposproductos->GetForForm()->result;
+            if(count($productos->GetAll()->result)>0){ //error 3
+                if(count($tiposreclamos->GetAll()->result) > 0){ //error 4
+                    $args['tiporecl'] = $tiposreclamos->GetAll()->result;
+                    if(count($lugares->GetAll()->result) > 0){ //error 5
+                        $args['lugares'] = $lugares->GetAll()->result;
+                        if(count($origen->GetByHash($param['origen']))>0){ //error 7
+                            $args['origen']=$param['origen'];
+                            if($estado->defineEstado('reclamos','creacion') > 0){ //error 6
+                                $error = 0;
+                            }else{
+                                $error = 6;
+                            };
+                        }else{
+                            $error =  7;
+                        };
+                    }else{
+                        $error = 5;
+                    };
+                }else{
+                    $error = 4;
+                };
+            }else{
+                $error = 3;
+            };
+        }else{
+            $error = 2;
+        };
     }else{
-        $error .= '1';
+        $error = 1;
     };
-    if(count($tiposproductos->GetForForm()->result)>0){
-        $args['tipoprod'] = $tiposproductos->GetForForm()->result;
-        $error .= '0';
+    if(($origen->GetByHash($param['origen']) != 1)){ // 1 es API
+        $args['embebed'] = true;
+    }
+    $args['accion']='/reclamo';
+    if($error==0){
+        return $this->view->render($response, 'reclamo/add.phtml', $args);
     }else{
-        $error .= '1';
-    };
-    if(count($productos->GetAll()->result)>0){
-        $error .= '0';
-    }else{
-        $error .= '1';
-    };
-    if(count($tiposreclamos->GetAll()->result) > 0){
-        $args['tiporecl'] = $tiposreclamos->GetAll()->result;
-        $error .= '0';
-    }else{
-        $error .= '1';
-    };
-    if(count($lugares->GetAll()->result) > 0){
-        $args['lugares'] = $lugares->GetAll()->result;
-        $error .= '0';
-    }else{
-        $error .= '1';
-    };
-    $args['error']=$error;
-    $args['errorcode']=bindec($error);
-
-    if(bindec($error)==0){
-        return $this->view->render($response, 'addreclamo.phtml', $args);
-    }else{
-        return $this->view->render($response, 'error.phtml', $args);
+        return $response->withStatus(302)->withHeader('Location', '/error/'.$error);
     }
 });
 $app->post('/reclamo', function (Request $request, Response $response) {
@@ -94,10 +103,37 @@ $app->post('/reclamo', function (Request $request, Response $response) {
     $formato = 'd/m/Y';
     $fecha = DateTime::createFromFormat($formato, $datos['fechavto']);
     $datos['fechavto']=$fecha->format('Y-m-d');
-    return $response->withJson($proceso->InsertOrUpdate($datos));
+    return $response->withJson($proceso->CrearReclamo($datos));
 });
 
-$app->get('/reclamo/{id}', function (Request $request, Response $response,$args) use($container) {
-    $procesos=new \Entidad\Reclamo_model();
-    return $response->withJson($procesos->Get($args['id'])->result);
+$app->get('/reclamo/{id}[/{accion}]', function (Request $request, Response $response,$args) use($container) {
+    $reclamos=new \Entidad\Reclamo_model();
+    $tiposproductos = new \Entidad\Tipoproducto_model();
+    $productos = new \Entidad\Producto_model();
+    $tiposreclamos = new \Entidad\Tiporeclamo_model();
+    $provincias = new \Entidad\Provincias_model();
+    $lugares = new \Entidad\Lugarcompra_model();
+    $origen = new \Entidad\Origenes_model();
+    $reclamo = $reclamos->Get($args['id'])->result;
+    if(isset($args['accion'])){
+        switch ($args['accion']){
+            case 'ver':
+                $args['provincias']=$provincias->GetAll()->result;
+                $args['lugares'] = $lugares->GetAll()->result;
+                $args['productos'] = $productos->GetByTipo($reclamo->tipoprod)->result;
+                //var_dump($productos->GetByTipo($reclamo->tipoprod)->result);die();
+                $args['tipoprod'] = $tiposproductos->GetAll()->result;
+                $args['tiporecl'] = $tiposreclamos->GetAll()->result;
+                $args['origenes'] = $origen->GetAll()->result;
+                $args['dato']=$reclamo;
+                return $this->view->render($response, 'reclamo/add.phtml', $args);
+                break;
+            default:
+                $error = 11;
+                return $response->withStatus(302)->withHeader('Location', '/error/'.$error);
+                break;
+        }
+    }else{
+        return $response->withJson($reclamo);
+    }
 });

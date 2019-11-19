@@ -48,11 +48,17 @@ class Reclamo_model{
         try {
             $result = array();
             if($url){
-                $sql = sprintf("SELECT t.*, concat(%s,t.id) link FROM $this->table t", $url);
+                $sql = sprintf("SELECT t.fechaini, t.apelnom, t.updated, t.estado, 
+                                               concat('<a href=\"/reclamo/',t.id,'/diag\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Analizar Reclamo\" class=\"btn btn-xs help\"><i class=\"fa fa-bug\"></i></a>',
+                                                      '<a href=\"/reclamo/',t.id,'/notif\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Cliente Notificado\" class=\"btn btn-xs help\" ><i class=\"fa fa-send\"></i></a>',                                                   
+                                                      '<a href=\"/reclamo/',t.id,'/envio\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Enviar Caja\" class=\"btn btn-xs help\"><i class=\"fa fa-truck\"></i></a>',                                                   
+                                                      '<a href=\"/reclamo/',t.id,'/recep\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Caja Recibida \" class=\"btn btn-xs help\"><i class=\"fa fa-shopping-basket\"></i></a>',                                                   
+                                                      '<a href=\"/reclamo/',t.id,'/resol\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Resolver Reclamo\" class=\"btn btn-xs help\"><i class=\"fa fa-check-square\"></i></a>',
+                                                      '<a href=\"/reclamo/',t.id,'/anul\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Anular Reclamo\" class=\"btn btn-xs help\"><i class=\"fa fa-ban\"></i></a>') as acciones                                                   
+                                          FROM $this->table t");
             }else{
-                $sql = sprintf("SELECT t.* FROM $this->table t");
+                $sql = sprintf("SELECT t.fechaini, t.apelnom, t.updated, t.estado FROM $this->table t");
             }
-
             $stm = $this->db->prepare($sql);
             $stm->execute();
 
@@ -192,5 +198,73 @@ class Reclamo_model{
             $this->response->setResponse(false, $e->getMessage());
         }
     }
+
+    public function CrearReclamo($data){
+        $fechoy = new \DateTime();
+        $estado= new Estados_model();
+        $origen = new Origenes_model();
+        $idestado = $estado->defineEstado($this->table, 'creacion');
+        $idorigen = $origen->GetByHash($data['origen']);
+        $error = '';
+        $error .= ($idorigen>0)?'0':'1';
+        $error .= ($idestado>0)?'0':'1';
+        //echo $error;die();
+        if(bindec($error)==0){
+            try {
+                $sql = "INSERT INTO $this->table (
+                            fechaini           ,
+                            apelnom            , 
+                            correoelectronico  ,
+                            telefono           ,
+                            tipoprod           ,
+                            idproducto         ,
+                            lote               , 
+                            fechavto           ,
+                            tiporeclamo        ,
+                            provincia          ,
+                            idlugarcompra      ,
+                            comentario         ,
+                            idorigen           ,
+                            updated            ,
+                            idusuario          ,
+                            estado             
+                                )
+                            VALUES (
+                                    ?,?,?, ?, ?,
+                                    ?,?,?, ?, ?,
+                                    ?,?,?, ?, ?,?
+                            )";
+                $this->db->prepare($sql)
+                    ->execute(
+                        array(
+                            $fechoy->format('Y-m-d H:i:s'),
+                            $data['apelnom'],
+                            $data['correoelectronico'],
+                            $data['telefono'],
+                            $data['tipoprod'],
+                            $data['idproducto'],
+                            $data['lote'],
+                            $data['fechavto'],
+                            $data['tiporeclamo'],
+                            $data['provincia'],
+                            $data['idlugarcompra'],
+                            $data['comentario'],
+                            $idorigen,
+                            $fechoy->format('Y-m-d H:i:s'),
+                            $data['usuario'],
+                            $idestado
+                        )
+                    );
+                $this->response->setResponse(true);
+                return $this->response;
+            } catch (Exception $e) {
+                $this->response->setResponse(false, $e->getMessage());
+            }
+        }else{
+            $this->response->setResponse($error, $error);
+
+        }
+    }
+
 
 }

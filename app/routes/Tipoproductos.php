@@ -46,15 +46,23 @@ $app->get('/tipoproductos[/{formato}]', function (Request $request, Response $re
 
 $app->post('/tipoproducto', function (Request $request, Response $response) {
     $producto=new \Entidad\Tipoproducto_model();
-    $respuesta['result']=$producto->InsertOrUpdate($request->getParsedBody())->result;
+    $estados = new \Entidad\Estados_model();
     $base_url = $request->getUri()->getScheme(). '://'.$request->getUri()->getHost().'/';
-    $respuesta['urlCallBack']=$base_url.'tipoproductos/html';
+    $idestado = $estados->defineEstado('tipoproductos', 'creacion');
+    if($idestado>0){
+        $respuesta['result']=$producto->InsertOrUpdate($request->getParsedBody())->result;
+        $respuesta['urlCallBack']=$base_url.'tipoproductos/html';
+    }else{
+        $respuesta['result'] = null;
+        $respuesta['urlCallBack']=$base_url.'error/6';
+    }
     return $response->withJson($respuesta);
 });
 
 $app->get('/tipoproducto', function (Request $request, Response $response) use($container) {
     $args['titulo'] = 'Tipo de Producto';
-    return $this->view->render($response, 'addtipoproducto.phtml', $args);
+    $args['accion'] = '/tipoproducto';
+    return $this->view->render($response, 'add.phtml', $args);
 });
 $app->get('/tipoproducto/{id}', function (Request $request, Response $response,$args) use($container) {
     $producto=new \Entidad\Tipoproducto_model();

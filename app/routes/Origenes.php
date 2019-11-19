@@ -33,7 +33,7 @@ $app->get('/origenes[/{formato}]', function (Request $request, Response $respons
                 return $this->view->render($response, 'grilla.phtml', $args);
                 break;
             case 'bootgrid':
-                return $response->withJson($productos->GetAllBootgrid('"/origen/"', '/reclamo/html/'));
+                return $response->withJson($productos->GetAllBootgrid('"/origen/"',     $request->getUri()->getScheme(). '://'.$request->getUri()->getHost().'/reclamo/html/'));
                 break;
             default:
                 return $response->withJson($productos->GetAll('"/origen/"')->result);
@@ -46,10 +46,18 @@ $app->get('/origenes[/{formato}]', function (Request $request, Response $respons
 
 $app->post('/origen', function (Request $request, Response $response) {
     $producto=new \Entidad\Origenes_model();
-    $creacion = $producto->InsertOrUpdate($request->getParsedBody());
-    $respuesta['result']=$creacion->result;
+    $estados = new \Entidad\Estados_model();
     $base_url = $request->getUri()->getScheme(). '://'.$request->getUri()->getHost().'/';
-    $respuesta['urlCallBack']=$base_url.'origenes/html';
+    $idestado = $estados->defineEstado('origenes', 'creacion');
+    if($idestado>0){
+        $creacion = $producto->InsertOrUpdate($request->getParsedBody());
+        $respuesta['result']=$creacion->result;
+        $base_url = $request->getUri()->getScheme(). '://'.$request->getUri()->getHost().'/';
+        $respuesta['urlCallBack']=$base_url.'origenes/html';
+    }else{
+        $respuesta['result'] = null;
+        $respuesta['urlCallBack']=$base_url.'error/6';
+    }
     return $response->withJson($respuesta);
 });
 

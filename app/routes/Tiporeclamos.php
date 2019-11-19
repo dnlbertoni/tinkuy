@@ -46,15 +46,24 @@ $app->get('/tiporeclamos[/{formato}]', function (Request $request, Response $res
 
 $app->post('/tiporeclamo', function (Request $request, Response $response) {
     $producto=new \Entidad\Tiporeclamo_model();
-    $respuesta['result']=$producto->InsertOrUpdate($request->getParsedBody())->result;
+    $estados = new \Entidad\Estados_model();
     $base_url = $request->getUri()->getScheme(). '://'.$request->getUri()->getHost().'/';
-    $respuesta['urlCallBack']=$base_url.'tiporeclamos/html';
+    $idestado = $estados->defineEstado('tiporeclamos', 'creacion');
+    if($idestado>0){
+        $respuesta['result']=$producto->InsertOrUpdate($request->getParsedBody())->result;
+        $base_url = $request->getUri()->getScheme(). '://'.$request->getUri()->getHost().'/';
+        $respuesta['urlCallBack']=$base_url.'tiporeclamos/html';
+    }else{
+        $respuesta['result'] = null;
+        $respuesta['urlCallBack']=$base_url.'error/6';
+    }
     return $response->withJson($respuesta);
 });
 
 $app->get('/tiporeclamo', function (Request $request, Response $response) use($container) {
     $args['titulo'] = 'Tipo de Reclamos';
-    return $this->view->render($response, 'addtiporeclamo.phtml', $args);
+    $args['accion'] = '/tiporeclamo';
+    return $this->view->render($response, 'add.phtml', $args);
 });
 $app->get('/tiporeclamo/{id}', function (Request $request, Response $response,$args) use($container) {
     $producto=new \Entidad\Tiporeclamo_model();

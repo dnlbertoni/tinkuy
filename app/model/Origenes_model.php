@@ -24,9 +24,9 @@ class Origenes_model{
         try {
             $result = array();
             if($url){
-                $sql = sprintf("SELECT t.*, concat('%s',to_base64(concat('id:',t.id))) \"Link Formulario\" ,concat(%s,t.id) link FROM $this->table t", $link_formulario, $url);
+                $sql = sprintf("SELECT t.*, concat('%s',to_base64(concat('id:',t.id))) \"Link Formulario\" ,concat(%s,t.id) link FROM $this->table t where 1=1", $link_formulario, $url);
             }else{
-                $sql = sprintf("SELECT t.* FROM $this->table t");
+                $sql = sprintf("SELECT t.*,to_base64(concat('id:',t.id)) hash FROM $this->table t where 1=1");
             }
 
             $stm = $this->db->prepare($sql);
@@ -48,7 +48,7 @@ class Origenes_model{
         try {
             $result = array();
             if($url){
-                $sql = "SELECT t.id, t.name as Nombre, e.name Estado, concat('%s',to_base64(concat('id:',t.id))) \"Link Formulario\",concat(%s,t.id) link FROM %s t inner join estados e on e.id=t.estado";
+                $sql = "SELECT t.name as Nombre, e.name Estado, concat('%s',to_base64(concat('id:',t.id))) \"Link Formulario\",concat(%s,t.id) link FROM %s t inner join estados e on e.id=t.estado";
                 $sql = sprintf($sql, $link_formulario,$url, $this->table);
             }else{
                 $sql = sprintf("SELECT t.* FROM $this->table t");
@@ -143,6 +143,25 @@ class Origenes_model{
             return $this->response;
         } catch (Exception $e) {
             $this->response->setResponse(false, $e->getMessage());
+        }
+    }
+
+    public function GetByHash($origen)
+    {
+        try {
+            $result = array();
+            $ori = base64_decode($origen);
+            $ori = explode(':', $ori);
+            $sql = sprintf("SELECT t.id FROM $this->table t WHERE id = %d", $ori[1]);
+            $stm = $this->db->prepare($sql);
+            $stm->execute();
+
+            $result = $stm->fetch();
+
+            return $result->id;
+        } catch (Exception $e) {
+            $this->response->setResponse(false, $e->getMessage());
+            return $this->response;
         }
     }
 

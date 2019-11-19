@@ -46,16 +46,25 @@ $app->get('/lugarcompras[/{formato}]', function (Request $request, Response $res
 
 $app->post('/lugarcompra', function (Request $request, Response $response) {
     $producto=new \Entidad\Lugarcompra_model();
-    $creacion = $producto->InsertOrUpdate($request->getParsedBody());
-    $respuesta['result']=$creacion->result;
+    $estados = new \Entidad\Estados_model();
     $base_url = $request->getUri()->getScheme(). '://'.$request->getUri()->getHost().'/';
-    $respuesta['urlCallBack']=$base_url.'lugarcompras/html';
+    $idestado = $estados->defineEstado('lugarcompra', 'creacion');
+    if($idestado>0){
+        $creacion = $producto->InsertOrUpdate($request->getParsedBody());
+        $respuesta['result']=$creacion->result;
+        $base_url = $request->getUri()->getScheme(). '://'.$request->getUri()->getHost().'/';
+        $respuesta['urlCallBack']=$base_url.'lugarcompras/html';
+    }else{
+        $respuesta['result'] = null;
+        $respuesta['urlCallBack']=$base_url.'error/6';
+    }
     return $response->withJson($respuesta);
 });
 
 $app->get('/lugarcompra', function (Request $request, Response $response) use($container) {
     $args['titulo'] = 'Lugar de Compra';
-    return $this->view->render($response, 'addlugarcompra.phtml', $args);
+    $args['accion'] = '/lugarcompra';
+    return $this->view->render($response, 'add.phtml', $args);
 });
 $app->get('/lugarcompra/{id}', function (Request $request, Response $response,$args) use($container) {
     $producto=new \Entidad\Lugarcompra_model();
