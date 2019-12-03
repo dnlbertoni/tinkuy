@@ -1,0 +1,223 @@
+{% extends embebed ? "embebed.html" : "layout.html" %}
+
+{% block content %}
+        <div class="wrap-grid100 p-l-20 p-r-20 p-t-77 p-b-30">
+            <div class="text-center">
+            <h1>Reclamos DH</h1>
+            <h6>Estimado consumidor, complete este formulario y a la brevedad nos comunicaremos con usted.</h6>
+            </div>
+            <br/>
+            <hr/>
+            <br>
+            <div class="form-row align-content-lg-center">
+                <div class="col-lg-3 col-md-4"></div>
+                <div class="col-lg-6 col-md-4" >
+                <form action="{{ accion }}" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="apelnom">Nombre y Apellido</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-user-circle"></i>
+                                </div>
+                            </div>
+                            <input id="apelnom" name="apelnom" placeholder="Apellido y Nombre" type="text" required="required" class="form-control" value="{{dato.apelnom}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="correoelectronico">Correo Electronico</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-at"></i>
+                                </div>
+                            </div>
+                            <input id="correoelectronico" name="correoelectronico" placeholder="Correo Electronico" type="text" class="form-control" value="{{dato.correoelectronico}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Telefono</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                            </div>
+                            <input id="telefono" name="telefono" placeholder="Telefono" type="text" required="required" class="form-control" value="{{dato.telefono}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipoprod">Tipo Producto</label>
+                        <div>
+                            <select id="tipoprod" name="tipoprod" aria-describedby="tipoprodHelpBlock" required="required" class="custom-select">
+                                <option value="" selected="selected">Seleccion Tipo de Producto</option>
+                                {% for item in tipoprod %}
+                                    {% set selected = '' %} }
+                                    {% if item.id == dato.tipoprod %}
+                                        {% set selected = 'selected' %} }
+                                    {% endif %}
+                                    <option value="{{ item.id }}"  {{ selected }} >{{ item.name}}</option>
+                                {% endfor %}
+                            </select>
+                            <span id="tipoprodHelpBlock" class="form-text text-muted">Tipo de Producto</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="idproducto">Producto</label>
+                        <div>
+                            <select id="idproducto" name="idproducto" required="required" class="custom-select">
+                                <option value="" selected="selected">Seleccion de Producto</option>
+                                {% for item in productos %}
+                                    {% set selected = '' %} }
+                                    {% if item.id == dato.idproducto %}
+                                        {% set selected = 'selected' %} }
+                                    {% endif %}
+                                    <option value="{{ item.id }}" {{ selected }} >{{ item.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lote">Lote</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-barcode"></i>
+                                </div>
+                            </div>
+                            <input id="lote" name="lote" placeholder="Numero de Lote" type="text" required="required" class="form-control" value="{{dato.lote}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechavto">Fecha de vencimiento</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
+                            <input id="fechavto" name="fechavto" placeholder="Fecha de Vencimiento" type="text" required="required" class="form-control datepicker" value="{{dato.fechavto}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo Reclamo</label>
+                        <div>
+                            <select id="tiporeclamo" name="tiporeclamo" required="required" class="custom-select">
+                                {% if tiporecl %}
+                                    {% for recl in tiporecl %}
+                                        {% set selected = '' %} }
+                                        {% if recl.id == dato.idreclamo %}
+                                            {% set selected = 'selected' %} }
+                                        {% endif %}
+                                        <option value="{{ recl.id }}" {{ selected }}>{{ recl.name }}</option>
+                                    {% endfor%}
+                                {% endif %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="provincia">Provincia</label>
+                        <div>
+                            <select id="provincia" name="provincia" required="required" class="custom-select">
+                                {% if provincias %}
+                                    {% for p in provincias%}
+                                        {% set selected = '' %} }
+                                        {% if p.iso_nombre == dato.provincia %}
+                                            {% set selected = 'selected' %} }
+                                        {% endif %}
+                                        <option value="{{ p.iso_nombre }}" {{ selected }}>{{ p.nombre }}</option>
+                                    {% endfor%}
+                                {% endif %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="idlugarcompra">Lugar de Compra</label>
+                        <div>
+                            <select id="idlugarcompra" name="idlugarcompra" required="required" class="custom-select">
+                                {% if lugares %}
+                                    {% for l in lugares%}
+                                        {% set selected = '' %} }
+                                        {% if l.id == dato.idlugarcompra %}
+                                            {% set selected = 'selected' %} }
+                                        {% endif %}
+                                        <option value="{{ l.id }}" {{ selected }}>{{ l.name }}</option>
+                                    {% endfor%}
+                                {% endif %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="comentario">Comentario</label>
+                        <textarea id="comentario" name="comentario" cols="40" rows="5" class="form-control"></textarea>
+                    </div>
+                    {% if origenes %}
+                    <div class="form-group">
+                        <select id="idorigen" name="idorigen" required="required" class="custom-select">
+                            {% for item in origenes%}
+                                {% set selected = '' %} }
+                                {% if item.id == dato.idorigen %}
+                                    {% set selected = 'selected' %} }
+                                {% endif %}
+                                <option value="{{ item.id }}" {{ selected }}>{{ item.name }}</option>
+                            {% endfor%}
+                        </select>
+                    </div>
+                {% else %}
+                    <input type="hidden" value="{{ origen }}" name="origen" id="origen"/>
+                {%endif%}
+                <div class="form-group text-center">
+                        <button name="submit" type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+                </div>
+                <div class="col-lg-3 col-md-4"></div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function() {
+                $("#tipoprod").change(function () {
+                    var tipoprod = $(this).val();
+                    $.get('/productos/ByTipo/' + tipoprod, function (data) {
+                        //esta el la peticion get, la cual se divide en tres partes. ruta,variables y funcion
+                        console.log(data);
+                        var producto_select = '<option value="">Seleccione Porducto</option>'
+                        for (var i = 0; i < data.length; i++)
+                            producto_select += '<option value="' + data[i].id + '">' + data[i].name + '</option>';
+                        $("#idproducto").html(producto_select);
+                    });
+                });
+                $('form').submit(function (event) {
+
+                    // get the form data
+                    // there are many ways to get this data using jQuery (you can use the class or id also)
+                    var formData = $(this).serialize();
+
+                    // process the form
+                    $.ajax({
+                        type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
+                        url: $(this).attr('action'), // the url where we want to POST
+                        data: formData, // our data object
+                        dataType: 'json', // what type of data do we expect back from the server
+                        encode: true
+                    })
+                    // using the done promise callback
+                        .done(function (data) {
+
+                            // log data to the console so we can see
+                            console.log(data);
+                            if (!(data.urlCallBack === undefined)) {
+                                location.href = data.urlCallBack;
+                            }
+                        });
+
+                    // stop the form from submitting the normal way and refreshing the page
+                    event.preventDefault();
+                });
+                $('.datepicker').datepicker({
+                    language: 'es'
+                });
+            });
+        </script>
+    </div>
+   {% endblock %}

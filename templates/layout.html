@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Tinkuy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="/images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="/bootgrid/jquery.bootgrid.min.css">
+
+    <!--===============================================================================================-->
+    <script src="/jquery/jquery.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/js/popper.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/js/main.js"></script>
+    <script src="/bootgrid/jquery.bootgrid.min.js"></script>
+    <script src="/bootgrid/jquery.bootgrid.fa.min.js"></script>
+
+</head>
+<body>
+<div class="pos-f-t">
+    <nav class="navbar navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <h2>Tinkuy</h2>
+    </nav>
+    <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-light p-4">
+            <! -- Navbar -->
+            <ul class="nav nav-pills">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reclamos</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/reclamos/html">Inventario</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/tablero/html">Tablero</a>
+                        <a class="dropdown-item" href="/estadisticas/html">Estadisticas</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Productos</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/productos/html">Productos</a>
+                        <a class="dropdown-item" href="/tipoproductos/html">Tipos de Productos</a>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Configuraciones</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/tiporeclamos/html">Tipos de Reclamos</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/lugarcompras/html">Lugares de Compra</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/estados/html">Estados</a>
+                        <a class="dropdown-item" href="/origenes/html">Origenes</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="limiter">
+    <div class="container-login100">
+            {% block content %}{% endblock %}
+    </div>
+</div>
+
+</body>
+</html>

@@ -7,7 +7,9 @@ class Database
 {
     public static function StartUp()
     {
-        $pdo = new PDO('mysql:host=localhost;dbname=reclamos;charset=utf8', 'danielbertoni', 'CE535server');
+        $DSN = 'mysql:host='.getenv(DB_HOST).';dbname='.getenv(DB_NAME).';charset=utf8';
+        //echo $DSN,getenv(DB_USER), getenv(DB_PASS); die();
+        $pdo = new PDO($DSN, getenv(DB_USER), getenv(DB_PASS));
         
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
