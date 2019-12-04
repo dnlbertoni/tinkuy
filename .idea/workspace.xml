@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38025527-75e4-493c-b9c3-9ad971164138" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/Api.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +65,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1575414631497</updated>
-      <workItem from="1575414633615" duration="3472000" />
+      <workItem from="1575414633615" duration="8143000" />
     </task>
     <servers />
   </component>
@@ -76,6 +77,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="275" y="30" key="#Composer/0.0.1366.738@0.0.1366.738" timestamp="1575414661335" />
+    <state x="321" y="0" key="CommitChangelistDialog2" timestamp="1575407384658">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="321" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1575407384658" />
     <state x="339" y="165" key="run.anything.popup" timestamp="1575406866682">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
