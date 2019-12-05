@@ -1,5 +1,7 @@
 <?php
 define('APP_ROOT', __DIR__);
+$dotenv = Dotenv\Dotenv::create(__DIR__.'/../public/');
+$dotenv->load();
 
 return [
     'settings' => [
@@ -30,11 +32,11 @@ return [
 
             'connection' => [
                 'driver' => 'pdo_mysql',
-                'host' => getenv(DB_HOST),
+                'host' => getenv('DB_HOST'),
                 'port' => 3306,
-                'dbname' => getenv(DB_NAME) ,
-                'user' => getenv(DB_USER),
-                'password' => getenv(DB_PASS),
+                'dbname' => getenv('DB_NAME') ,
+                'user' => getenv('DB_USER'),
+                'password' => getenv('DB_PASS'),
                 'charset' => 'utf-8'
             ]
         ]

@@ -48,14 +48,21 @@ class Reclamo_model{
         try {
             $result = array();
             if($url){
-                $sql = sprintf("SELECT t.fechaini, t.apelnom, t.updated, t.estado, 
-                                               concat('<a href=\"/reclamo/',t.id,'/diag\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Analizar Reclamo\" class=\"btn btn-xs help\"><i class=\"fa fa-bug\"></i></a>',
-                                                      '<a href=\"/reclamo/',t.id,'/notif\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Cliente Notificado\" class=\"btn btn-xs help\" ><i class=\"fa fa-send\"></i></a>',                                                   
-                                                      '<a href=\"/reclamo/',t.id,'/envio\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Enviar Caja\" class=\"btn btn-xs help\"><i class=\"fa fa-truck\"></i></a>',                                                   
-                                                      '<a href=\"/reclamo/',t.id,'/recep\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Caja Recibida \" class=\"btn btn-xs help\"><i class=\"fa fa-shopping-basket\"></i></a>',                                                   
-                                                      '<a href=\"/reclamo/',t.id,'/resol\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Resolver Reclamo\" class=\"btn btn-xs help\"><i class=\"fa fa-check-square\"></i></a>',
-                                                      '<a href=\"/reclamo/',t.id,'/anul\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Anular Reclamo\" class=\"btn btn-xs help\"><i class=\"fa fa-ban\"></i></a>') as acciones                                                   
-                                          FROM $this->table t");
+                $sql = sprintf("SELECT  t.id id,
+                                                t.fechaini fecha , 
+                                                t.apelnom cliente,
+                                                p.codigo codigo,
+                                                p.name producto, 
+                                                t.updated actualizacion,
+                                                o.name origen,    
+                                                t.estado idestado,
+                                                t.dictamen,
+                                                e.name estado 
+                                        FROM reclamos t
+                                        inner join productos p on p.id=t.idproducto
+                                        inner join estados   e on e.id=t.estado
+                                        inner join origenes o on t.idorigen = o.id
+                                        ");
             }else{
                 $sql = sprintf("SELECT t.fechaini, t.apelnom, t.updated, t.estado FROM $this->table t");
             }
@@ -266,5 +273,167 @@ class Reclamo_model{
         }
     }
 
+    public function analizar($idreclamo, $dictamen, $idusuario=null){
+        $fechoy = new \DateTime();
+        $estado= new Estados_model();
+        $idestado = $estado->defineEstado($this->table, 'diagnostico');
+        try {
+            if($idestado>0 ){
+                $sql = "UPDATE $this->table SET 
+                            idusuario          = ?,
+                            dictamen           = ?,
+                            updated            = ?,
+                            estado             = ?
+                        WHERE id = ?";
+
+                $this->db->prepare($sql)
+                    ->execute(
+                        array(
+                            $idusuario,
+                            $dictamen,
+                            $fechoy->format('Y-m-d H:i:s'),
+                            $idestado,
+                            $idreclamo
+                        )
+                    );
+                $this->response->setResponse(0);
+            }else{
+                $this->response->setResponse(6);
+            }
+            return $this->response;
+        } catch (Exception $e) {
+            $this->response->setResponse(false, $e->getMessage());
+        }
+    }
+
+    public function notificar($idreclamo, $medio,$idusuario=null){
+        $fechoy = new \DateTime();
+        $estado= new Estados_model();
+        $idestado = $estado->defineEstado($this->table, 'notificacion');
+        try {
+            if($idestado>0 ){
+                $sql = "UPDATE $this->table SET
+                            contacto_cliente    = ?,
+                            idusuario          = ?,
+                            updated            = ?,
+                            estado             = ?
+                        WHERE id = ?";
+
+                $this->db->prepare($sql)
+                    ->execute(
+                        array(
+                            $medio,
+                            $idusuario,
+                            $fechoy->format('Y-m-d H:i:s'),
+                            $idestado,
+                            $idreclamo
+                        )
+                    );
+                $this->response->setResponse(0);
+            }else{
+                $this->response->setResponse(6);
+            }
+            return $this->response;
+        } catch (Exception $e) {
+            $this->response->setResponse(false, $e->getMessage());
+        }
+    }
+
+    public function enviar($idreclamo, $nrotrack,$idusuario=null){
+        $fechoy = new \DateTime();
+        $estado= new Estados_model();
+        $idestado = $estado->defineEstado($this->table, 'envio');
+        try {
+            if($idestado>0 ){
+                $sql = "UPDATE $this->table SET
+                            nrotrack    = ?,
+                            idusuario          = ?,
+                            updated            = ?,
+                            estado             = ?
+                        WHERE id = ?";
+
+                $this->db->prepare($sql)
+                    ->execute(
+                        array(
+                            $nrotrack,
+                            $idusuario,
+                            $fechoy->format('Y-m-d H:i:s'),
+                            $idestado,
+                            $idreclamo
+                        )
+                    );
+                $this->response->setResponse(0);
+            }else{
+                $this->response->setResponse(6);
+            }
+            return $this->response;
+        } catch (Exception $e) {
+            $this->response->setResponse(false, $e->getMessage());
+        }
+    }
+
+    public function recibir($idreclamo, $idusuario=null){
+        $fechoy = new \DateTime();
+        $estado= new Estados_model();
+        $idestado = $estado->defineEstado($this->table, 'recepcion');
+        try {
+            if($idestado>0 ){
+                $sql = "UPDATE $this->table SET
+                            idusuario          = ?,
+                            updated            = ?,
+                            estado             = ?
+                        WHERE id = ?";
+
+                $this->db->prepare($sql)
+                    ->execute(
+                        array(
+                            $idusuario,
+                            $fechoy->format('Y-m-d H:i:s'),
+                            $idestado,
+                            $idreclamo
+                        )
+                    );
+                $this->response->setResponse(0);
+            }else{
+                $this->response->setResponse(6);
+            }
+            return $this->response;
+        } catch (Exception $e) {
+            $this->response->setResponse(false, $e->getMessage());
+        }
+    }
+
+    public function resolver($idreclamo, $dictamen, $idusuario=null){
+        $fechoy = new \DateTime();
+        $estado= new Estados_model();
+        $idestado = $estado->defineEstado($this->table, 'resolucion');
+        try {
+            if($idestado>0 ){
+                $sql = "UPDATE $this->table SET
+                            dictamen_final     = ?,
+                            idusuario          = ?,
+                            updated            = ?,
+                            estado             = ?
+                        WHERE id = ?";
+
+                $this->db->prepare($sql)
+                    ->execute(
+                        array(
+                            $dictamen,
+                            $idusuario,
+                            $fechoy->format('Y-m-d H:i:s'),
+                            $idestado,
+                            $idreclamo
+                        )
+                    );
+                $this->response->setResponse(0);
+            }else{
+                $this->response->setResponse(6);
+            }
+            return $this->response;
+        } catch (Exception $e) {
+            $this->response->setResponse(false, $e->getMessage());
+        }
+    }
 
 }

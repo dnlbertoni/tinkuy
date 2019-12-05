@@ -87,12 +87,22 @@ class Reclamos
     private $idorigen;
 
     /**
-     * @ORM\Column(name="dictamen", type="integer", nullable=true)
+     * @ORM\Column(name="dictamen", type="string", length=255, nullable=true)
      */
     private $dictamen;
 
     /**
-     * @ORM\Column(name="nrotack", type="string", length=255, , nullable=true)
+     * @ORM\Column(name="dictamen_final", type="string", length=255, nullable=true)
+     */
+    private $dictamen_final;
+
+    /**
+     * @ORM\Column(name="contacto_cliente",type="string", length=255, nullable=true)
+     */
+    private $contacto_cliente;
+
+    /**
+     * @ORM\Column(name="nrotrack", type="string", length=255, nullable=true)
      */
     private $nrotrack;
 

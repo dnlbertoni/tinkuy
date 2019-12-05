@@ -23,12 +23,17 @@ class Historicoreclamos
     private $id;
 
     /**
-     * @ORM\Column(name="fechaini", type="datetime")
+     * @ORM\Column(name="idreclamo", type="integer", nullable=true )
      */
-    private $fechaini;
+    private $idreclamo;
 
     /**
-     * @ORM\Column(name="estado_anterior", type="integer" )
+     * @ORM\Column(name="fecha", type="datetime")
+     */
+    private $fecha;
+
+    /**
+     * @ORM\Column(name="estado_anterior", type="integer", nullable=true )
      */
     private $estado_anterior;
 
@@ -38,7 +43,7 @@ class Historicoreclamos
     private $estado_actual;
 
     /**
-     * @ORM\Column(name="idusuario", type="integer")
+     * @ORM\Column(name="idusuario", type="integer", nullable=true)
      */
     private $idusuario;
 

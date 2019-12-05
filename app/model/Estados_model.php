@@ -215,4 +215,22 @@ class Estados_model{
         }
     }
 
+    public function flujoEstados(){
+        try {
+            $result = array();
+            $sql = "SELECT e.id,f.idevento_new 
+                      FROM flujo_eventos f
+                    inner join estados e on e.idmaquinaestado=f.idmaquinaestados and e.idevento=f.idevento_old";
+            //$sql = sprintf($sql);
+            $stm = $this->db->prepare($sql);
+            $stm->execute();
+            $result = $stm->fetchAll();
+
+            return $result;
+        } catch (Exception $e) {
+            $this->response->setResponse(false, $e->getMessage());
+            return false;
+        }
+    }
+
 }

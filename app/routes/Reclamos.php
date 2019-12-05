@@ -31,6 +31,15 @@ $app->get('/reclamos[/{formato}]', function (Request $request, Response $respons
                 'linkAdd'=>'/reclamo/html/aWQ6MQ==');
             return $this->view->render($response, 'grilla.phtml', $args);
             break;
+        case 'tablero':
+            $datos = $reclamos->GetAllBootgrid('"/reclamo/"');
+            $flujoEstados = new \Entidad\Estados_model();
+            $args = array(  'datos'=>$datos,
+                            'flujo'=>$flujoEstados->flujoEstados(),
+                            'titulo'=>'Reclamos en Gestion',
+                            'linkAdd'=>'/reclamo/html/aWQ6MQ==');
+            return $this->view->render($response, 'reclamo/tablero.phtml', $args);
+            break;
         case 'bootgrid':
             return $response->withJson($reclamos->GetAllBootgrid('/reclamo/'));
             break;
@@ -114,10 +123,11 @@ $app->get('/reclamo/{id}[/{accion}]', function (Request $request, Response $resp
     $provincias = new \Entidad\Provincias_model();
     $lugares = new \Entidad\Lugarcompra_model();
     $origen = new \Entidad\Origenes_model();
-    $reclamo = $reclamos->Get($args['id'])->result;
+    $id=$args['id'];
     if(isset($args['accion'])){
         switch ($args['accion']){
             case 'ver':
+                $reclamo = $reclamos->Get($id)->result;
                 $args['provincias']=$provincias->GetAll()->result;
                 $args['lugares'] = $lugares->GetAll()->result;
                 $args['productos'] = $productos->GetByTipo($reclamo->tipoprod)->result;
@@ -126,7 +136,56 @@ $app->get('/reclamo/{id}[/{accion}]', function (Request $request, Response $resp
                 $args['tiporecl'] = $tiposreclamos->GetAll()->result;
                 $args['origenes'] = $origen->GetAll()->result;
                 $args['dato']=$reclamo;
+                $args['back']='/reclamos/tablero';
                 return $this->view->render($response, 'reclamo/add.phtml', $args);
+                break;
+            case 'diag':
+                $args['titulo']='Analisis del Reclmao';
+                $args['back']='/reclamos/tablero';
+                $textos[] = array('id'=>'dictamen', 'label'=>'Dictamen', 'icono'=>'fa-note');
+                $args['accion']='/reclamo/'.$id.'/diag';
+                $args['textos']=$textos;
+                return $this->view->render($response, 'reclamo/modal.phtml', $args);
+                break;
+            case 'notif':
+                $args['titulo']='Notificacion al Cliente';
+                $args['back']='/reclamos/tablero';
+                $combos[] = array(  'id'=>'contacto_cliente',
+                                    'label'=>'Medio de Contacto',
+                                    'combo'=>array( array('id'=>'Email', 'name'=>'Email'),
+                                                    array('id'=>'Telefono', 'name'=>'Telefono'),
+                                                    array('id'=>'Email y Telefono', 'name'=>'Email y Telefono')));
+                $args['combos']=$combos;
+                $args['accion']='/reclamo/'.$id.'/notif';
+                return $this->view->render($response, 'reclamo/modal.phtml', $args);
+                break;
+            case 'envio':
+                $args['titulo']='Envio Caja al Cliente';
+                $args['back']='/reclamos/tablero';
+                $textos[] = array('id'=>'nrotack', 'label'=>'Numero Envio OCA', 'icono'=>'fa-barcode');
+                $args['accion']='/reclamo/'.$id.'/envio';
+                $args['textos']=$textos;
+                return $this->view->render($response, 'reclamo/modal.phtml', $args);
+                break;
+            case 'recepcion':
+                $args['titulo']='Recepcion de  Caja por el Cliente';
+                $args['back']='/reclamos/tablero';
+                //$textos[] = array('id'=>'nrotack', 'label'=>'Numero Envio OCA', 'icono'=>'fa-barcode');
+                $args['accion']='/reclamo/'.$id.'/recepcion';
+                //$args['textos']=$textos;
+                return $this->view->render($response, 'reclamo/modal.phtml', $args);
+                break;
+            case 'resolucion':
+                $args['titulo']='Resolusion del Reclamo';
+                $args['back']='/reclamos/tablero';
+                $combos[] = array(  'id'=>'contacto_cliente',
+                    'label'=>'Medio de Contacto',
+                    'combo'=>array( array('id'=>'Email', 'name'=>'Email'),
+                        array('id'=>'Telefono', 'name'=>'Telefono'),
+                        array('id'=>'Email y Telefono', 'name'=>'Email y Telefono')));
+                $args['combos']=$combos;
+                $args['accion']='/reclamo/'.$id.'/resolucion';
+                return $this->view->render($response, 'reclamo/modal.phtml', $args);
                 break;
             default:
                 $error = 11;
@@ -134,6 +193,86 @@ $app->get('/reclamo/{id}[/{accion}]', function (Request $request, Response $resp
                 break;
         }
     }else{
+        $reclamo = $reclamos->Get($id)->result;
+        return $response->withJson($reclamo);
+    }
+});
+
+$app->post('/reclamo/{id}[/{accion}]', function (Request $request, Response $response,$args) use($container) {
+    $reclamos=new \Entidad\Reclamo_model();
+    $tiposproductos = new \Entidad\Tipoproducto_model();
+    $productos = new \Entidad\Producto_model();
+    $tiposreclamos = new \Entidad\Tiporeclamo_model();
+    $provincias = new \Entidad\Provincias_model();
+    $lugares = new \Entidad\Lugarcompra_model();
+    $origen = new \Entidad\Origenes_model();
+    $id=$args['id'];
+    if(isset($args['accion'])){
+        switch ($args['accion']){
+            case 'ver':
+                $reclamo = $reclamos->Get($id)->result;
+                $args['provincias']=$provincias->GetAll()->result;
+                $args['lugares'] = $lugares->GetAll()->result;
+                $args['productos'] = $productos->GetByTipo($reclamo->tipoprod)->result;
+                //var_dump($productos->GetByTipo($reclamo->tipoprod)->result);die();
+                $args['tipoprod'] = $tiposproductos->GetAll()->result;
+                $args['tiporecl'] = $tiposreclamos->GetAll()->result;
+                $args['origenes'] = $origen->GetAll()->result;
+                $args['dato']=$reclamo;
+                $args['back']='/reclamos/tablero';
+                return $this->view->render($response, 'reclamo/add.phtml', $args);
+                break;
+            case 'diag':
+                $error= $reclamos->analizar($id,1);
+                if($error->response != 0){
+                    return $response->withStatus(200)->withHeader('Location', '/error/'.$error->response);
+                }else{
+                    return $response->withStatus(200)->withHeader('Location', '/reclamos/tablero');
+                }
+                break;
+            case 'notif':
+                $datos=$request->getParsedBody();
+                $error= $reclamos->notificar($id,1);
+                if($error->response != 0){
+                    return $response->withStatus(200)->withHeader('Location', '/error/'.$error->response);
+                }else{
+                    return $response->withStatus(200)->withHeader('Location', '/reclamos/tablero');
+                }
+                break;
+            case 'envio':
+                $datos=$request->getParsedBody();
+                $error= $reclamos->enviar($id,$datos['nrotack']);
+                if($error->response != 0){
+                    return $response->withStatus(200)->withHeader('Location', '/error/'.$error->response);
+                }else{
+                    return $response->withStatus(200)->withHeader('Location', '/reclamos/tablero');
+                }
+                break;
+            case 'recepcion':
+                $datos=$request->getParsedBody();
+                $error= $reclamos->recibir($id);
+                if($error->response != 0){
+                    return $response->withStatus(200)->withHeader('Location', '/error/'.$error->response);
+                }else{
+                    return $response->withStatus(200)->withHeader('Location', '/reclamos/tablero');
+                }
+                break;
+            case 'resolucion':
+                $datos=$request->getParsedBody();
+                $error= $reclamos->resolver($id, $datos['dictamen']);
+                if($error->response != 0){
+                    return $response->withStatus(200)->withHeader('Location', '/error/'.$error->response);
+                }else{
+                    return $response->withStatus(200)->withHeader('Location', '/reclamos/tablero');
+                }
+                break;
+            default:
+                $error = 11;
+                return $response->withStatus(302)->withHeader('Location', '/error/'.$error);
+                break;
+        }
+    }else{
+        $reclamo = $reclamos->Get($id)->result;
         return $response->withJson($reclamo);
     }
 });

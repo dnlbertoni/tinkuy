@@ -7,7 +7,6 @@ $container = $app->getContainer();
 
 
 $app->get('/', function (Request $request, Response $response, array $args) use($container)   {
-    $args['pru']=getenv(DB_NAME);
     return $this->view->render($response, 'index.phtml', $args);
 });
 

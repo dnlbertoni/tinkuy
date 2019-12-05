@@ -21,10 +21,10 @@ $isDevMode = false;
 // the connection configuration
 $dbParams = array(
     'driver' => 'pdo_mysql',
-    'host' => getenv(DB_HOST),
-    'user' => getenv(DB_USER),
-    'password' => getenv(DB_PASS),
-    'dbname' => getenv(DB_NAME),
+    'host' => getenv('DB_HOST'),
+    'user' => getenv('DB_USER'),
+    'password' => getenv('DB_PASS'),
+    'dbname' => getenv('DB_NAME'),
 );
 
 $configDoctrine = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode, null, null, false);

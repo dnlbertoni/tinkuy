@@ -14,3 +14,4 @@ INSERT INTO errores(id,name) VALUES (8,'Nombre de Usuario Activo Existente');
 INSERT INTO errores(id,name) VALUES (9,'Usuario Pendiente de Aprobacion');
 INSERT INTO errores(id,name) VALUES (10,'Usuario y Contraseña Invalidos');
 INSERT INTO errores(id,name) VALUES (11,'Accion no definida');
+INSERT INTO errores(id,name) VALUES (0,'No ocurrio ningun Error');
