@@ -47,6 +47,11 @@ class Reclamos
     private $tipoprod;
 
     /**
+     * @ORM\Column(name="idproducto", type="integer")
+     */
+    private $idproducto;
+
+    /**
      * @ORM\Column(name="lote", type="string", length=255)
      */
     private $lote;
@@ -72,22 +77,52 @@ class Reclamos
     private $idlugarcompra;
 
     /**
-     * @ORM\Column(name="comentario", type="text", length=4000)
+     * @ORM\Column(name="comentario", type="text", length=4000, nullable=true)
      */
     private $comentario;
 
     /**
-     * @ORM\Column(name="fechaini", type="datetime")
+     * @ORM\Column(name="idorigen", type="integer")
+     */
+    private $idorigen;
+
+    /**
+     * @ORM\Column(name="dictamen", type="string", length=255, nullable=true)
+     */
+    private $dictamen;
+
+    /**
+     * @ORM\Column(name="dictamen_final", type="string", length=255, nullable=true)
+     */
+    private $dictamen_final;
+
+    /**
+     * @ORM\Column(name="contacto_cliente",type="string", length=255, nullable=true)
+     */
+    private $contacto_cliente;
+
+    /**
+     * @ORM\Column(name="nrotrack", type="string", length=255, nullable=true)
+     */
+    private $nrotrack;
+
+    /**
+     * @ORM\Column(name="updated", type="datetime", nullable=true)
+     */
+    private $updated;
+
+    /**
+     * @ORM\Column(name="fechafin", type="datetime", nullable=true)
      */
     private $fechafin;
 
     /**
-     * @ORM\Column(name="idusuario", type="integer")
+     * @ORM\Column(name="idusuario", type="integer", nullable=true)
      */
     private $idusuario;
 
     /**
-     * @ORM\Column(name="estado", type="integer", length=5)
+     * @ORM\Column(name="estado", type="integer", length=5 )
      */
     private $estado;
 

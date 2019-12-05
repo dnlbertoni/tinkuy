@@ -5,38 +5,27 @@ use Slim\Http\Response;
 
 $container = $app->getContainer();
 
-$app->get('/responsables', function (Request $request, Response $response, array $args)   {
-    $procesos=new \Entidad\Responsable_model();
-    return $response->withJson($procesos->GetAll('"/responsable/"')->result);
-});
-$app->get('/responsables/html', function (Request $request, Response $response) use($container) {
-    $dat = new \Entidad\Responsable_model();
-    $datos = json_encode($dat->GetAll('"/responsable/"')->result);
-    $th= (array)$dat->GetAll('"/responsable/"')->result[0];
-    $th = array_keys($th);
-    $args = array(  'datos'=>$datos,
-                    'urlData'=>'/responsables/bootgrid',
-                    'titulo'=>'Responsables',
-                    'th'=> $th,
-                    'linkAdd'=>'/responsable');
-    return $container->get('renderer')->render($response, 'grilla.phtml', $args);
+
+$app->get('/', function (Request $request, Response $response, array $args) use($container)   {
+    return $this->view->render($response, 'index.phtml', $args);
 });
 
-$app->get('/responsables/bootgrid', function (Request $request, Response $response) use($container) {
-    $procesos = new \Entidad\Responsable_model();
-    return $response->withJson($procesos->GetAllBootgrid('"/responsable/"'));
+$app->get('/login', function (Request $request, Response $response, array $args) use($container)   {
+    return $this->view->render($response, 'user/login.phtml', $args);
 });
 
-$app->post('/responsable', function (Request $request, Response $response) {
-    $proceso = new Entidad\Responsable_model();
-    return $response->withJson($proceso->InsertOrUpdate($request->getParsedBody()));
+$app->get('/registrar', function (Request $request, Response $response, array $args) use($container)   {
+    return $this->view->render($response, 'user/registrar.phtml', $args);
 });
-
-$app->get('/responsable', function (Request $request, Response $response) use($container) {
-    $args = array();
-    return $container->get('renderer')->render($response, 'addusuario.phtml', $args);
-});
-$app->get('/responsable/{id}', function (Request $request, Response $response,$args) use($container) {
-    $procesos=new \Entidad\Responsable_model();
-    return $response->withJson($procesos->Get($args['id'])->result);
+$app->post('/registrar', function (Request $request, Response $response)   {
+    $usuario=new \Entidad\Usuario_model();
+    $datos = $request->getParsedBody();
+    if($datos['password']===$datos['pass1']){
+        http_response_code(200);
+        $respuesta = $usuario->InsertOrUpdate($datos);
+    }else{
+        http_response_code(401);
+        $respuesta = 'Las contraseñas no coinciden';
+    }
+    return $response->withJson($respuesta);
 });
