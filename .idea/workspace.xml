@@ -2,101 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38025527-75e4-493c-b9c3-9ad971164138" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/tinkuy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tinkuy.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/font-awesome/css/all.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/font-awesome/css/all.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/font-awesome/css/all.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/font-awesome/css/all.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/font-awesome/font-awesome-built.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/font-awesome/font-awesome-built.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-brands-400.eot" beforeDir="false" afterPath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-brands-400.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-brands-400.svg" beforeDir="false" afterPath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-brands-400.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-brands-400.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-brands-400.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-brands-400.woff" beforeDir="false" afterPath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-brands-400.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-brands-400.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-brands-400.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-regular-400.eot" beforeDir="false" afterPath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-regular-400.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-regular-400.svg" beforeDir="false" afterPath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-regular-400.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-regular-400.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-regular-400.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-regular-400.woff" beforeDir="false" afterPath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-regular-400.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-regular-400.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-regular-400.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-solid-900.eot" beforeDir="false" afterPath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-solid-900.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-solid-900.svg" beforeDir="false" afterPath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-solid-900.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-solid-900.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-solid-900.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-solid-900.woff" beforeDir="false" afterPath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-solid-900.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-solid-900.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/components/font-awesome/webfonts/fa-solid-900.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/jquery/jquery-migrate.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/jquery/jquery-migrate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/jquery/jquery-migrate.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/jquery/jquery-migrate.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/require.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/require.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/css/bootstrap-grid.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/css/bootstrap-grid.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/css/bootstrap-grid.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/css/bootstrap-grid.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/css/bootstrap-grid.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/css/bootstrap-grid.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/css/bootstrap-grid.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/css/bootstrap-grid.min.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/css/bootstrap-reboot.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/css/bootstrap-reboot.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/css/bootstrap-reboot.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/css/bootstrap-reboot.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/css/bootstrap-reboot.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/css/bootstrap-reboot.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/css/bootstrap-reboot.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/css/bootstrap-reboot.min.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/css/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/css/bootstrap.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/css/bootstrap.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/css/bootstrap.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/css/bootstrap.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/css/bootstrap.min.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/component.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/component.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/all.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/all.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/all.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/all.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/brands.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/brands.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/brands.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/brands.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/fontawesome.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/fontawesome.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/fontawesome.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/fontawesome.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/regular.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/regular.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/regular.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/regular.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/solid.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/solid.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/solid.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/solid.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/svg-with-js.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/svg-with-js.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/svg-with-js.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/svg-with-js.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/v4-shims.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/v4-shims.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/v4-shims.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/css/v4-shims.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/less/_core.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/less/_core.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/less/_icons.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/less/_icons.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/less/_shims.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/less/_shims.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/less/_variables.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/less/_variables.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/less/brands.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/less/brands.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/less/fontawesome.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/less/fontawesome.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/less/regular.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/less/regular.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/less/solid.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/less/solid.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/less/v4-shims.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/less/v4-shims.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/scss/_core.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/scss/_core.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/scss/_icons.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/scss/_icons.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/scss/_shims.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/scss/_shims.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/scss/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/scss/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/scss/brands.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/scss/brands.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/scss/fontawesome.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/scss/fontawesome.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/scss/regular.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/scss/regular.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/scss/solid.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/scss/solid.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/scss/v4-shims.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/scss/v4-shims.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-brands-400.eot" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-brands-400.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-brands-400.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-brands-400.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-brands-400.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-brands-400.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-brands-400.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-brands-400.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-brands-400.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-brands-400.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-regular-400.eot" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-regular-400.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-regular-400.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-regular-400.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-regular-400.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-regular-400.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-regular-400.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-regular-400.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-regular-400.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-regular-400.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-solid-900.eot" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-solid-900.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-solid-900.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-solid-900.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-solid-900.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-solid-900.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-solid-900.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-solid-900.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-solid-900.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/font-awesome/webfonts/fa-solid-900.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/js/bootstrap.bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/js/bootstrap.bundle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/js/bootstrap.bundle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/js/bootstrap.bundle.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/js/bootstrap.bundle.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/js/bootstrap.bundle.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/js/bootstrap.bundle.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/js/bootstrap.bundle.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/js/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/js/bootstrap.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/js/bootstrap.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/js/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/js/bootstrap.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bootstrap/js/bootstrap.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/bootstrap/js/bootstrap.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/jquery/component.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/jquery/component.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/jquery/jquery-migrate.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/jquery/jquery-migrate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/jquery/jquery-migrate.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/jquery/jquery-migrate.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/.env_sample" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -250,7 +157,7 @@
       <option name="presentableId" value="Default" />
       <updated>1575414631497</updated>
       <workItem from="1575414633615" duration="8143000" />
-      <workItem from="1575573057458" duration="439000" />
+      <workItem from="1575573057458" duration="814000" />
     </task>
     <servers />
   </component>
