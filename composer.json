@@ -26,11 +26,20 @@
         "monolog/monolog": "^1.17",
         "doctrine/orm": "*",
         "twbs/bootstrap": ">=3",
-        "components/jquery": "1.9.*",
+        "components/jquery": "2.*",
         "components/font-awesome": "*",
         "doctrine/migrations": "^2.0",
         "slim/twig-view" : "*",
-        "slim/php-view": "^2.2"
+        "slim/php-view": "^2.2",
+        "tuupola/slim-jwt-auth": "^3.4",
+        "tuupola/base62": "^2.0",
+        "tuupola/cors-middleware": "^1.0",
+        "tuupola/slim-basic-auth": "^3.2",
+        "crell/api-problem": "^2.0",
+        "gofabian/negotiation-middleware": "^0.1.2",
+        "micheh/psr7-cache": "^0.5.0",
+        "ext-openssl": "*",
+        "bryanjhv/slim-session": "~3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.0",

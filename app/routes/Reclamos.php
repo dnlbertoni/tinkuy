@@ -17,6 +17,10 @@ $container['view'] = function ($container) {
 };
 
 $app->get('/reclamos[/{formato}]', function (Request $request, Response $response, $params) use($container) {
+    $session = new \SlimSession\Helper;
+    if(!$session->exists('token')){
+        return $response->withStatus(200)->withHeader('Location', '/');
+    };
     $reclamos = new \Entidad\Reclamo_model();
     $formato = (isset($params['formato']))?$params['formato']:null;
     switch ($formato){
@@ -34,10 +38,12 @@ $app->get('/reclamos[/{formato}]', function (Request $request, Response $respons
         case 'tablero':
             $datos = $reclamos->GetAllBootgrid('"/reclamo/"');
             $flujoEstados = new \Entidad\Estados_model();
-            $args = array(  'datos'=>$datos,
-                            'flujo'=>$flujoEstados->flujoEstados(),
-                            'titulo'=>'Reclamos en Gestion',
-                            'linkAdd'=>'/reclamo/html/aWQ6MQ==');
+            $args = array(  'datos'   => $datos,
+                            'flujo'   => $flujoEstados->flujoEstados(),
+                            'titulo'  => 'Reclamos en Gestion',
+                            'usuario' => $session->get('usuario'),
+                            'token'   => $session->get('token'),
+                            'linkAdd' => '/reclamo/html/aWQ6MQ==');
             return $this->view->render($response, 'reclamo/tablero.phtml', $args);
             break;
         case 'bootgrid':

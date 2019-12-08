@@ -29,15 +29,10 @@ $dependencies($app);
 $middleware = require __DIR__ . '/../src/middleware.php';
 $middleware($app);
 
-// Register routes
-/*
-$routes = require __DIR__ . '/../src/routes.php';
-$routes($app);
-*/
-
 
 // Register my App
 require __DIR__ . '/../app/app_loader.php';
+
 
 // Run app
 $app->run();

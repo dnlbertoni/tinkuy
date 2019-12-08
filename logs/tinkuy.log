@@ -1,0 +1,20 @@
+[2019-12-07 17:39:25] proc.DEBUG: Using token from request header [] {"uid":"59bc2d7"}
+[2019-12-07 17:39:59] proc.DEBUG: Using token from request header [] {"uid":"bbd791d"}
+[2019-12-07 17:40:16] proc.DEBUG: Using token from request header [] {"uid":"6aa4e86"}
+[2019-12-07 17:41:26] proc.DEBUG: Using token from request header [] {"uid":"0275f7b"}
+[2019-12-07 17:41:58] proc.DEBUG: Using token from request header [] {"uid":"56f42fa"}
+[2019-12-07 17:43:14] proc.DEBUG: Using token from request header [] {"uid":"4ada8d4"}
+[2019-12-07 17:45:26] proc.DEBUG: Using token from request header [] {"uid":"c394c4f"}
+[2019-12-07 17:46:59] proc.DEBUG: Using token from request header [] {"uid":"200fd1a"}
+[2019-12-07 17:47:05] proc.DEBUG: Using token from request header [] {"uid":"effed74"}
+[2019-12-07 17:47:53] proc.DEBUG: Using token from request header [] {"uid":"704c347"}
+[2019-12-07 17:48:01] proc.DEBUG: Using token from request header [] {"uid":"a319550"}
+[2019-12-07 17:48:01] proc.WARNING: Signature verification failed ["eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NzU3NTA3ODYsImV4cCI6MTU3NTc1Nzk4NiwianRpIjoiMSIsInN1YiI6ImRhbmllbCBiZXJ0b25pIiwic2NvcGUiOiJhbGwifQ.CPqjhuyGE1UDpZjPZR1wKRo5WN5RoXLyuzIsSFh5z3"] {"uid":"a319550"}
+[2019-12-07 18:23:03] proc.DEBUG: Using token from request header [] {"uid":"deabfad"}
+[2019-12-07 18:23:03] proc.WARNING: Signature verification failed ["eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NzU3NTA3ODYsImV4cCI6MTU3NTc1Nzk4NiwianRpIjoiMSIsInN1YiI6ImRhbmllbCBiZXJ0b25pIiwic2NvcGUiOiJhbGwifQ.CPqjhuyGE1UDpZjPZR1wKRo5WN5RoXLyuzIsSFh5z3"] {"uid":"deabfad"}
+[2019-12-07 18:23:25] proc.DEBUG: Using token from request header [] {"uid":"800dad3"}
+[2019-12-07 21:37:52] proc.WARNING: Token not found [] {"uid":"eb9d1f2"}
+[2019-12-07 22:43:05] proc.DEBUG: Using token from request header [] {"uid":"1356b22"}
+[2019-12-07 22:49:40] proc.DEBUG: Using token from request header [] {"uid":"330579b"}
+[2019-12-07 22:49:52] proc.DEBUG: Using token from request header [] {"uid":"49ac9c8"}
+[2019-12-08 00:07:03] proc.DEBUG: Using token from request header [] {"uid":"8bf2445"}

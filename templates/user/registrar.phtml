@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="wrap-login100 p-l-100 p-r-50 p-t-77 p-b-30">
-    <form class="login100-form validate-form" method="post" action="/registrar">
+    <form class="login100-form validate-form" method="post" action="/api/v1/user/registrar">
                         <span class="login100-form-title p-b-55">
                             Ingresar
                         </span>
@@ -67,8 +67,12 @@
 
                     // log data to the console so we can see
                     console.log(data);
-                    if(!(data.urlCallBack===undefined)){
-                        location.href = data.urlCallBack;
+                    if(!(data.codigo===undefined)){
+                        if(data.codigo==0){
+                            location.href = '/reclamos/tablero';
+                        }else{
+                            location.href = '/error/'+data.codigo;
+                        }
                     }
                 });
 

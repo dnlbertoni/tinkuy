@@ -3,6 +3,7 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 
+
 $app->group('/api', function() use($app){
     $app->group('/v1', function ($app){
         $app->group('/productos', function($app){
@@ -14,7 +15,7 @@ $app->group('/api', function() use($app){
                 $productos = new \Entidad\Producto_model();
                 return $response->withJson($productos->GetByTipo($params['tipoproducto'])->result);
             });
-            $app->get('/{id}', function (Request $request, Response $response,$args) {
+            $app->get('[/{id}]', function (Request $request, Response $response,$args) {
                 $productos=new \Entidad\Producto_model();
                 if(isset($args['id'])){
                     $base_url = $request->getUri()->getScheme(). '://'.$request->getUri()->getHost().'/';

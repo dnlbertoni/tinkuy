@@ -2,8 +2,181 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38025527-75e4-493c-b9c3-9ad971164138" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/.env_sample" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/lib/ApiResponse.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/lib/ForbiddenResponse.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/lib/Token.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/lib/UnauthorizedResponse.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routes/ApiUser.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logs/tinkuy.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jquery/bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery.base64.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/components/jquery/bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/crell/api-problem/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/crell/api-problem/src/ApiProblem.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/crell/api-problem/src/JsonParseException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/CONTRIBUTING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/LICENSE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/phpunit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/src/AcceptProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/src/Configuration.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/src/ConfigurationFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/src/HeaderNegotiator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/src/NegotiationException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/src/NegotiationMiddleware.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/tests/AcceptProviderTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/tests/ConfigurationFactoryTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/tests/ConfigurationTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/tests/HeaderNegotiatorTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/tests/NegotiationMiddlewareTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/tests/TestMessage.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/tests/TestRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/tests/TestResponse.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware/tests/bootstrap.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/micheh/psr7-cache/LICENSE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/micheh/psr7-cache/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/micheh/psr7-cache/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/micheh/psr7-cache/src/CacheUtil.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/micheh/psr7-cache/src/Header/CacheControl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/micheh/psr7-cache/src/Header/RequestCacheControl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/micheh/psr7-cache/src/Header/ResponseCacheControl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/NOTICE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/src/AnalysisResult.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/src/Analyzer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/src/Contracts/AnalysisResultInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/src/Contracts/AnalysisStrategyInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/src/Contracts/AnalyzerInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/src/Contracts/Constants/CorsRequestHeaders.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/src/Contracts/Constants/CorsResponseHeaders.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/src/Contracts/Constants/SimpleRequestHeaders.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/src/Contracts/Constants/SimpleRequestMethods.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/src/Contracts/Constants/SimpleResponseHeaders.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/src/Contracts/Factory/FactoryInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/src/Contracts/Http/ParsedUrlInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/src/Contracts/Strategies/SettingsStrategyInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/src/Factory/Factory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/src/Http/ParsedUrl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/src/Log/LoggerAwareTrait.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/neomerx/cors-psr7/src/Strategies/Settings.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/ChangeLog-8.5.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/src/Framework/Constraint/TraversableContainsEqual.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/src/Framework/Constraint/TraversableContainsIdentical.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/src/Framework/Exception/NoChildTestSuiteException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/src/Util/InvalidDataSetException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/tests/_files/SeparateProcessesTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/tests/_files/TestCaseWithExceptionInHook.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/tests/end-to-end/cli/deprecation-warning-with-class.phpt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/tests/end-to-end/mock-objects/generator/3967.phpt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/tests/end-to-end/separate-processes-test.phpt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/tests/unit/Runner/NullTestResultCacheTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/tests/unit/Runner/TestResultCacheTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/tests/unit/Util/ColorTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/tests/unit/Util/TestClassTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/base62/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/base62/LICENSE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/base62/UPGRADING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/base62/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/base62/src/Base62.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/base62/src/Base62/BaseEncoder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/base62/src/Base62/BcmathEncoder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/base62/src/Base62/GmpEncoder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/base62/src/Base62/PhpEncoder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/base62/src/Base62Proxy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/cors-middleware/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/cors-middleware/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/cors-middleware/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/cors-middleware/src/CorsMiddleware.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/LICENSE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/UPGRADING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/phpstan.neon" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/phpunit.xml.dist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/src/HttpBasicAuthentication.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/src/HttpBasicAuthentication/ArrayAuthenticator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/src/HttpBasicAuthentication/AuthenticatorInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/src/HttpBasicAuthentication/PdoAuthenticator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/src/HttpBasicAuthentication/RequestMethodRule.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/src/HttpBasicAuthentication/RequestPathRule.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/src/HttpBasicAuthentication/RuleInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/tests/ArrayAuthenticatorTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/tests/BasicAuthenticationTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/tests/PdoAuthenticatorTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/tests/RequestMethodRuleTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/tests/RequestPathRuleTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/tests/lib/FalseAuthenticator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/tests/lib/FalseRule.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/tests/lib/TrueAuthenticator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth/tests/lib/TrueRule.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/CONTRIBUTING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/appveyor.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/phpunit.xml.dist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/src/Negotiation/AbstractNegotiator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/src/Negotiation/Accept.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/src/Negotiation/AcceptCharset.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/src/Negotiation/AcceptEncoding.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/src/Negotiation/AcceptHeader.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/src/Negotiation/AcceptLanguage.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/src/Negotiation/BaseAccept.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/src/Negotiation/CharsetNegotiator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/src/Negotiation/EncodingNegotiator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/src/Negotiation/Exception/Exception.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/src/Negotiation/Exception/InvalidArgument.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/src/Negotiation/Exception/InvalidHeader.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/src/Negotiation/Exception/InvalidLanguage.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/src/Negotiation/Exception/InvalidMediaType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/src/Negotiation/LanguageNegotiator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/src/Negotiation/Match.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/src/Negotiation/Negotiator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/tests/Negotiation/Tests/AcceptLanguageTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/tests/Negotiation/Tests/AcceptTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/tests/Negotiation/Tests/BaseAcceptTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/tests/Negotiation/Tests/CharsetNegotiatorTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/tests/Negotiation/Tests/EncodingNegotiatorTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/tests/Negotiation/Tests/LanguageNegotiatorTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/tests/Negotiation/Tests/MatchTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/tests/Negotiation/Tests/NegotiatorTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/tests/Negotiation/Tests/TestCase.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/willdurand/negotiation/tests/bootstrap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/tinkuy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tinkuy.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/model/Errores_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/Errores_model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/model/Usuario_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/Usuario_model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/Api.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/Reclamos.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Reclamos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/Usuarios.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/Usuarios.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/.env_sample" beforeDir="false" afterPath="$PROJECT_DIR$/public/.env_sample" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/jquery/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/public/jquery/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/jquery/component.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/jquery/component.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/jquery/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/jquery/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/jquery/jquery-migrate.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/jquery/jquery-migrate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/jquery/jquery-migrate.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/jquery/jquery-migrate.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/jquery/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/jquery/jquery.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/jquery/jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/jquery/jquery.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/jquery/jquery.min.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/jquery/jquery.min.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/jquery/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/jquery/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/login.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/login.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/registrar.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/registrar.phtml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,8 +187,61 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
-      <executable />
+      <executable path="composer" />
     </execution>
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="reclamos@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="reclamos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="reclamos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="reclamos: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="reclamos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="reclamos: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="reclamos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="reclamos: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="usuarios: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -28,7 +254,6 @@
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
-      <path value="$PROJECT_DIR$/vendor/kriswallsmith/assetic" />
       <path value="$PROJECT_DIR$/vendor/components/jquery" />
       <path value="$PROJECT_DIR$/vendor/components/font-awesome" />
       <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
@@ -45,7 +270,6 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/type" />
       <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
       <path value="$PROJECT_DIR$/vendor/phpoption/phpoption" />
-      <path value="$PROJECT_DIR$/vendor/robloach/component-installer" />
       <path value="$PROJECT_DIR$/vendor/ocramius/package-versions" />
       <path value="$PROJECT_DIR$/vendor/ocramius/proxy-manager" />
       <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
@@ -63,7 +287,6 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
       <path value="$PROJECT_DIR$/vendor/doctrine/migrations" />
       <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
-      <path value="$PROJECT_DIR$/vendor/symfony/process" />
       <path value="$PROJECT_DIR$/vendor/symfony/finder" />
       <path value="$PROJECT_DIR$/vendor/symfony/stopwatch" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
@@ -113,6 +336,21 @@
       <path value="$PROJECT_DIR$/vendor/zendframework/zend-code" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-server-handler" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-server-middleware" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/tuupola/slim-jwt-auth" />
+      <path value="$PROJECT_DIR$/vendor/tuupola/callable-handler" />
+      <path value="$PROJECT_DIR$/vendor/tuupola/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/tuupola/cors-middleware" />
+      <path value="$PROJECT_DIR$/vendor/tuupola/base62" />
+      <path value="$PROJECT_DIR$/vendor/tuupola/slim-basic-auth" />
+      <path value="$PROJECT_DIR$/vendor/neomerx/cors-psr7" />
+      <path value="$PROJECT_DIR$/vendor/gofabian/negotiation-middleware" />
+      <path value="$PROJECT_DIR$/vendor/crell/api-problem" />
+      <path value="$PROJECT_DIR$/vendor/willdurand/negotiation" />
+      <path value="$PROJECT_DIR$/vendor/micheh/psr7-cache" />
+      <path value="$PROJECT_DIR$/vendor/bryanjhv/slim-session" />
     </include_path>
   </component>
   <component name="ProjectId" id="1UUcUjpPsz1FajBcz7V65d8Wh4E" />
@@ -122,8 +360,16 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/routes" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -132,7 +378,12 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/routes" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -146,6 +397,21 @@
       </list>
     </option>
   </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@83b2ae9f" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -157,7 +423,9 @@
       <option name="presentableId" value="Default" />
       <updated>1575414631497</updated>
       <workItem from="1575414633615" duration="8143000" />
-      <workItem from="1575573057458" duration="814000" />
+      <workItem from="1575573057458" duration="23382000" />
+      <workItem from="1575648601277" duration="13949000" />
+      <workItem from="1575739347841" duration="25463000" />
     </task>
     <servers />
   </component>
@@ -169,7 +437,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

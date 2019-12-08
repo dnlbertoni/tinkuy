@@ -11,13 +11,72 @@ class Usuario_model{
     private $table = 'usuarios';
     private $response;
     private $bootgrid;
+    private $method;
+    private $key;
+    private $iv;
 
     public function __construct()
     {
-        $this->db = Database::StartUp();
+        $this->db       = Database::StartUp();
         $this->response = new Response();
         $this->bootgrid = new ResponseBootgrid();
+        $this->setMethod();
+        $this->setKey('TiNkUy');
+        $this->setIv('TiNkUy');
     }
+
+    /**
+     * @return mixed
+     */
+    private function getMethod()
+    {
+        return $this->method;
+    }
+
+    /**
+     * @param mixed $method
+     */
+    private function setMethod($index=23)
+    {
+        $methods = openssl_get_cipher_methods();
+        $this->method = $methods[$index];
+    }
+
+    /**
+     * @return string
+     */
+    private function getKey()
+    {
+        return $this->key;
+    }
+
+    /**
+     * @param string $key
+     */
+    private function setKey($key)
+    {
+        $key = substr(hash('sha256', trim($key)),0,32);
+        $this->key = $key;
+    }
+
+    /**
+     * @return false|string
+     */
+    private function getIv()
+    {
+        return $this->iv;
+    }
+
+    /**
+     * @param false|string $iv
+     */
+    private function setIv($iv)
+    {
+        $len = openssl_cipher_iv_length($this->getMethod());
+        $iv        = substr(hash('sha256', $iv), 0, $len);
+        $this->iv = $iv;
+    }
+
 
     public function GetAll($url=false)
     {
@@ -104,7 +163,7 @@ class Usuario_model{
                         array(
                             $data['email'],
                             $data['nombre'],
-                            $this->encodePass($data['password']),
+                            $this->encodePass($data['password'], $data['email']),
                             $data['estado'],
                             $data['id']
                         )
@@ -121,13 +180,13 @@ class Usuario_model{
                             array(
                                 $data['email'],
                                 $data['nombre'],
-                                $this->encodePass($data['password']),
-                                1
+                                $this->encodePass($data['password'], $data['email']),
+                                0
                             )
                         );
                     $this->response->setResponse(true);
                 }else{
-                    $this->response->setResponse(-1, 'Ya existe ese Correo activo');
+                    $this->response->setResponse(15);
                 };
             }
             return $this->response;
@@ -154,12 +213,13 @@ class Usuario_model{
     private function existeMailActivo($email){
         try {
             $result = array();
-            $sql = sprintf("SELECT count(1) cantidad FROM $this->table t WHERE  email = '%s' and estado=1", $email);
+            $sql = sprintf("SELECT count(1) cantidad FROM $this->table t WHERE  email = '%s' and estado in (0,1)", $email);
+
             $stm = $this->db->prepare($sql);
             $stm->execute();
 
             $result = $stm->fetch();
-            if($result->cantidad = 0){
+            if($result->cantidad == 0){
                 return false;
             }else{
                 return true;
@@ -169,7 +229,48 @@ class Usuario_model{
         }
     }
 
-    private function encodePass($pass){
-        return password_hash($pass, PASSWORD_DEFAULT);
+    private function encodePass($pass, $user){
+        $this->setKey($user);
+        $hash = openssl_encrypt($pass, $this->getMethod(), $this->getKey(),0,$this->getIv());
+        //echo $hash,'<pre>',$this->getMethod(),'<pre>', $this->getKey(),'<pre>',$this->getIv();
+        return $hash;
     }
+
+    public function decodePass($pass, string $user){
+        $this->setKey($user);
+        $hash=openssl_decrypt($pass, $this->getMethod(), $this->getKey(),0, $this->getIv());
+        //echo $hash,'<pre>',$this->getMethod(),'<pre>', $this->getKey(),'<pre>',$this->getIv();die();
+        return $hash;
+    }
+
+    public function loginUsuario($usuario, $pass){
+        try {
+            $result = array();
+            $sql = sprintf("SELECT id, nombre,email,password,estado FROM $this->table t WHERE email = '%s'", $usuario);
+            $stm = $this->db->prepare($sql);
+            $stm->execute();
+
+            $this->response->setResponse(true);
+            $this->response->result = $stm->fetch();
+
+            return$this->response->result;
+        } catch (Exception $e) {
+            $this->response->setResponse(false, $e->getMessage());
+            return $this->response;
+        }
+    }
+
+    public function Activar($usuario){
+        try {
+            $result = array();
+            $sql = sprintf("update $this->table set estado=1 WHERE id = %d and estado=0 ", $usuario);
+            $stm = $this->db->prepare($sql)->execute();
+            $this->response->setResponse(true);
+            return $this->response;
+        } catch (Exception $e) {
+            $this->response->setResponse(false, $e->getMessage());
+            return $this->response;
+        }
+    }
+
 }

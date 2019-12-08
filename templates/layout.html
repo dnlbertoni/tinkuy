@@ -35,6 +35,7 @@
     <script src="/js/main.js"></script>
     <script src="/bootgrid/jquery.bootgrid.min.js"></script>
     <script src="/bootgrid/jquery.bootgrid.fa.min.js"></script>
+    <script src="/js/jquery.base64.min.js"></script>
 
 </head>
 <body>
@@ -44,6 +45,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <h2>Tinkuy</h2>
+        <h6>{{ usuario }}</h6>
+        <button id="logout" class="btn btn-xs" data-reference="/logout"><i class="fa fa-sign-out"></i></button>
     </nav>
     <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-light p-4">
@@ -86,6 +89,32 @@
             {% block content %}{% endblock %}
     </div>
 </div>
-
+<script>
+    $(document).ready(function () {
+        $("#logout").click(function () {
+            var token = '{{token}}';
+            $.ajax({
+                type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+                contentType : "application/json",
+                headers:{
+                    "Authorization": "Bearer " + token
+                },
+                url         : $(this).attr('data-reference'), // the url where we want to POST
+                dataType    : 'json', // what type of data do we expect back from the server
+                encode          : true
+            }).done(function(data) {
+                // log data to the console so we can see
+                console.log(data);
+                if(!(data.codigo===undefined)){
+                    if(data.codigo==0){
+                        location.href = '/';
+                    }else{
+                        location.href = '/error/'+data.codigo;
+                    }
+                }
+            });
+        })
+    })
+</script>
 </body>
 </html>

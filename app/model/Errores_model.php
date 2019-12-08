@@ -68,4 +68,22 @@ class Errores_model{
         }
     }
 
+    public function GetMensaje($id)
+    {
+        try {
+            $result = array();
+            $sql = sprintf("SELECT t.name FROM $this->table t WHERE id = %d", $id);
+            $stm = $this->db->prepare($sql);
+            $stm->execute();
+
+            $this->response->setResponse(true);
+            $this->response->result = $stm->fetch();
+
+            return (isset($this->response->result->name))?$this->response->result->name:'Codigo no definido';
+        } catch (Exception $e) {
+            $this->response->setResponse(false, $e->getMessage());
+            return $this->response;
+        }
+    }
+
 }
