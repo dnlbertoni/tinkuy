@@ -16,32 +16,22 @@ $container['view'] = function ($container) {
     return $view;
 };
 
-$app->get('/productos[/{formato}]', function (Request $request, Response $response, $params) use($container) {
-    $productos = new \Entidad\Producto_model();
-    $formato = (isset($params['formato']))?$params['formato']:null;
-    if(isset($params['formato'])){
-        switch ($formato){
-            case 'html':
-                $datos = json_encode($productos->GetAll('"/producto/"')->result);
-                $th= (array)$productos->GetAllBootgrid('"/producto/"')->rows[0];
-                $th = array_keys($th);
-                $args = array(  'datos'=>$datos,
-                    'urlData'=>'/productos/bootgrid',
-                    'titulo'=>'Productos',
-                    'th'=> $th,
-                    'linkAdd'=>'/producto');
-                return $this->view->render($response, 'grilla.phtml', $args);
-                break;
-            case 'bootgrid':
-                return $response->withJson($productos->GetAllBootgrid('"/producto/"'));
-                break;
-            default:
-                return $response->withJson($productos->GetAll('"/producto/"')->result);
-                break;
-        }
-    }else{
-        return $response->withJson($productos->GetAll('"/producto/"')->result);
-    }
+$app->group('/productos', function ($app) use ($container){
+    $app->get('[/]', function (Request $request, Response $response, $params) use($container) {
+        $session = new \SlimSession\Helper;
+        $productos = new \Entidad\Producto_model();
+        $datos = json_encode($productos->GetAll('"/producto/"')->result);
+        $th= (array)$productos->GetAllBootgrid('"/producto/"')->rows[0];
+        $th = array_keys($th);
+        $args = array(  'datos'=>$datos,
+            'urlData'=>'/api/v1/productos/bootgrid',
+            'titulo'=>'Productos',
+            'usuario' => $session->get('usuario'),
+            'token'   => $session->get('token'),
+            'th'=> $th,
+            'linkAdd'=>'/producto');
+        return $this->view->render($response, 'grilla.phtml', $args);
+    });
 });
 $app->get('/productos/ByTipo/{tipoproducto}', function (Request $request, Response $response, $params) use($container) {
     $productos = new \Entidad\Producto_model();

@@ -108,7 +108,6 @@ class ComposerStaticInit40960a23126e4d691ae570766d4326b5
         'C' => 
         array (
             'Crell\\ApiProblem\\' => 17,
-            'CorsSlim\\' => 9,
             'Composer\\XdebugHandler\\' => 23,
         ),
         'A' => 
@@ -333,10 +332,6 @@ class ComposerStaticInit40960a23126e4d691ae570766d4326b5
         'Crell\\ApiProblem\\' => 
         array (
             0 => __DIR__ . '/..' . '/crell/api-problem/src',
-        ),
-        'CorsSlim\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/palanik/corsslim',
         ),
         'Composer\\XdebugHandler\\' => 
         array (

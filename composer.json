@@ -19,7 +19,6 @@
     "require": {
         "slim/slim": "^3.12.2",
         "respect/validation": "^1.1",
-        "palanik/corsslim": "dev-slim3",
         "vlucas/phpdotenv": "^3.6",
         "predis/predis": "^1.1",
         "firebase/php-jwt": "^5.0",

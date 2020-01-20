@@ -57,7 +57,6 @@ return array(
     'Doctrine\\Common\\' => array($vendorDir . '/doctrine/common/lib/Doctrine/Common', $vendorDir . '/doctrine/event-manager/lib/Doctrine/Common', $vendorDir . '/doctrine/persistence/lib/Doctrine/Common', $vendorDir . '/doctrine/reflection/lib/Doctrine/Common'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Crell\\ApiProblem\\' => array($vendorDir . '/crell/api-problem/src'),
-    'CorsSlim\\' => array($vendorDir . '/palanik/corsslim'),
     'Composer\\XdebugHandler\\' => array($vendorDir . '/composer/xdebug-handler/src'),
     'App\\' => array($baseDir . '/src'),
     '' => array($vendorDir . '/bryanjhv/slim-session/src'),

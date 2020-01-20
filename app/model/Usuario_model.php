@@ -263,7 +263,19 @@ class Usuario_model{
     public function Activar($usuario){
         try {
             $result = array();
-            $sql = sprintf("update $this->table set estado=1 WHERE id = %d and estado=0 ", $usuario);
+            $sql = sprintf("update $this->table set estado=1 WHERE id = %d and estado in (0,2) ", $usuario);
+            $stm = $this->db->prepare($sql)->execute();
+            $this->response->setResponse(true);
+            return $this->response;
+        } catch (Exception $e) {
+            $this->response->setResponse(false, $e->getMessage());
+            return $this->response;
+        }
+    }
+    public function Suspender($usuario){
+        try {
+            $result = array();
+            $sql = sprintf("update $this->table set estado=2 WHERE id = %d and estado=1 ", $usuario);
             $stm = $this->db->prepare($sql)->execute();
             $this->response->setResponse(true);
             return $this->response;

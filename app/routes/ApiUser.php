@@ -99,8 +99,39 @@ $app->group('/api', function() use($app){
                     if(is_int($id)){
                         $usuario = $usuarios->Get($id)->result;
                         if($usuario){
-                            if($usuario->estado==0){
+                            if($usuario->estado==0 || $usuario->estado==2 ){ // pendiente o suspendido
                                 $respuesta = $usuarios->Activar($id);
+                                $rta->setCodigo(0);
+                                $rta->setRespuesta($respuesta);
+                            }else{
+                                $rta->setCodigo(19);
+                                $rta->setRespuesta(false);
+                            }
+                        }else{
+                            $rta->setCodigo(18);
+                            $rta->setRespuesta(false);
+                        }
+                    }else{
+                        $rta->setCodigo(17);
+                        $rta->setRespuesta(false);
+                    }
+                }else{
+                    $rta->setCodigo(13);
+                    $rta->setRespuesta(false);
+                }
+                return $response->withJson($rta->getRta());
+            });
+            $app->post('/suspender', function (Request $request, Response $response)   {
+                $rta = new ApiResponse();
+                $usuarios = new \Entidad\Usuario_model();
+                $datos    = $request->getParsedBody();
+                $id    = ($datos['id'])?$datos['id']:false;
+                if($id){
+                    if(is_int($id)){
+                        $usuario = $usuarios->Get($id)->result;
+                        if($usuario){
+                            if($usuario->estado==1){
+                                $respuesta = $usuarios->Suspender($id);
                                 $rta->setCodigo(0);
                                 $rta->setRespuesta($respuesta);
                             }else{

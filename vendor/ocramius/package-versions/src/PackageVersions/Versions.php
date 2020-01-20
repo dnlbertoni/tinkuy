@@ -46,7 +46,6 @@ final class Versions
   'nikic/fast-route' => 'v1.3.0@181d480e08d9476e61381e04a71b34dc0432e812',
   'ocramius/package-versions' => '1.5.1@1d32342b8c1eb27353c8887c366147b4c2da673c',
   'ocramius/proxy-manager' => '2.2.3@4d154742e31c35137d5374c998e8f86b54db2e2f',
-  'palanik/corsslim' => 'dev-slim3@e84cb944ca73aace3ea92f6ec0b68de1619eea62',
   'phpoption/phpoption' => '1.6.0@f4e7a6a1382183412246f0d361078c29fb85089e',
   'pimple/pimple' => 'v3.2.3@9e403941ef9d65d20cba7d54e29fe906db42cf32',
   'predis/predis' => 'v1.1.1@f0210e38881631afeafb56ab43405a92cafd9fd1',
@@ -119,7 +118,7 @@ final class Versions
   'symfony/finder' => 'v4.4.1@ce8743441da64c41e2a667b8eb66070444ed911e',
   'theseer/tokenizer' => '1.1.3@11336f6f84e16a720dae9d8e6ed5019efa85a0f9',
   'webmozart/assert' => '1.6.0@573381c0a64f155a0d9a23f4b0c797194805b925',
-  'tinkuy' => 'dev-master@16ff252fe8ecccd535534d11b82f6f4d465d5db8',
+  'tinkuy' => 'dev-master@2236a003ad1c8129f45d25a245927093f8bd768a',
 );
 
     private function __construct()

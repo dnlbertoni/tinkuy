@@ -18,3 +18,11 @@
 [2019-12-07 22:49:40] proc.DEBUG: Using token from request header [] {"uid":"330579b"}
 [2019-12-07 22:49:52] proc.DEBUG: Using token from request header [] {"uid":"49ac9c8"}
 [2019-12-08 00:07:03] proc.DEBUG: Using token from request header [] {"uid":"8bf2445"}
+[2019-12-08 20:57:55] proc.WARNING: Token not found [] {"uid":"faff3ec"}
+[2019-12-08 20:59:15] proc.WARNING: Token not found [] {"uid":"fd65138"}
+[2019-12-08 22:52:09] proc.WARNING: Token not found [] {"uid":"8022050"}
+[2019-12-10 22:18:01] proc.DEBUG: Using token from request header [] {"uid":"a6da3d9"}
+[2019-12-10 22:18:26] proc.WARNING: Token not found [] {"uid":"ab94f8c"}
+[2019-12-10 22:18:38] proc.DEBUG: Using token from request header [] {"uid":"8d8922b"}
+[2019-12-10 22:20:35] proc.DEBUG: Using token from request header [] {"uid":"63ae03e"}
+[2019-12-10 22:20:39] proc.DEBUG: Using token from request header [] {"uid":"922e18b"}
